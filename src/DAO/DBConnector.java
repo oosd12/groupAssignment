@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -14,8 +14,8 @@ import java.sql.SQLException;
  * @author Abdullah
  */
 public class DBConnector {
-    private Connection DBConnection;
-    public Connection connect(){
+     private com.mysql.jdbc.Connection DBConnection;
+    public com.mysql.jdbc.Connection connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Connection successful");
@@ -23,9 +23,9 @@ public class DBConnector {
         catch(ClassNotFoundException cnfe){
             System.out.println("Connection failed" + cnfe);
         }
-        String url = "jdbc:mysql://localhost:3306/bookstore";
+        String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
         try{
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+            DBConnection = (com.mysql.jdbc.Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
             System.out.println("Database Connected");
         }
         catch(SQLException se){
