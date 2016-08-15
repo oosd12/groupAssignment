@@ -35,13 +35,4 @@ public class DBConnector {
     }
 }
 
-//EDITING ONLINE
 
-//Editing online again
-//editing from my PC
-
-
-//making some changes on my laptp
-
-//changing stuff on github
-//hmm
