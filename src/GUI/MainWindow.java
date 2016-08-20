@@ -64,7 +64,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProducts = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtSearchBar = new javax.swing.JTextField();
@@ -370,7 +370,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelTop.setBackground(new java.awt.Color(0, 51, 51));
         panelTop.setOpaque(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -381,7 +381,7 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProducts);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Welcome To Happy Shoppers");
@@ -625,7 +625,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblGreet;
     private javax.swing.JLabel lblGreet1;
@@ -642,6 +641,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelProductInfo;
     private javax.swing.JPanel panelTop;
     private javax.swing.JSpinner spnQuantity;
+    private javax.swing.JTable tblProducts;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtSearchBar;
