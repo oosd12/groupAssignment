@@ -12,7 +12,7 @@ package GUI;
 public class MainWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form mainWindow
+     * Creates new form MainWindow3
      */
     public MainWindow() {
         initComponents();
@@ -27,21 +27,542 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelContainer = new javax.swing.JPanel();
+        panelAccountControls = new javax.swing.JPanel();
+        panelNotLoggedIn = new javax.swing.JPanel();
+        lblGreet = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        panelCustomerLogin = new javax.swing.JPanel();
+        lblGreet1 = new javax.swing.JLabel();
+        lblItems = new javax.swing.JLabel();
+        lblMessages = new javax.swing.JLabel();
+        btnViewCart = new javax.swing.JButton();
+        btnMessages = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        panelAdminLogin = new javax.swing.JPanel();
+        lblCustomerName = new javax.swing.JLabel();
+        lblItems1 = new javax.swing.JLabel();
+        btnViewCart1 = new javax.swing.JButton();
+        btnCancelPhoneOrder = new javax.swing.JButton();
+        lblGreet3 = new javax.swing.JLabel();
+        panelProductInfo = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtProductName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtSupplierName = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        ftxtProductionDate = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        spnQuantity = new javax.swing.JSpinner();
+        btnAddToCart = new javax.swing.JButton();
+        btnViewReview = new javax.swing.JButton();
+        lblProductImage = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        panelTop = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtSearchBar = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        cmbFilter = new javax.swing.JComboBox<>();
+        cmbSort = new javax.swing.JComboBox<>();
+        cmbLocation = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        panelAccountControls.setBackground(new java.awt.Color(51, 153, 255));
+        panelAccountControls.setOpaque(false);
+        panelAccountControls.setLayout(new java.awt.CardLayout());
+
+        panelNotLoggedIn.setBackground(new java.awt.Color(204, 51, 255));
+        panelNotLoggedIn.setOpaque(false);
+
+        lblGreet.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblGreet.setText("<html>Register with us and login to <br> purchase products online.... </html>");
+
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("In a hurry ? Place a phone order, call : +94-2XXXXX ");
+
+        javax.swing.GroupLayout panelNotLoggedInLayout = new javax.swing.GroupLayout(panelNotLoggedIn);
+        panelNotLoggedIn.setLayout(panelNotLoggedInLayout);
+        panelNotLoggedInLayout.setHorizontalGroup(
+            panelNotLoggedInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNotLoggedInLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelNotLoggedInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGreet, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        panelNotLoggedInLayout.setVerticalGroup(
+            panelNotLoggedInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNotLoggedInLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblGreet, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+
+        panelAccountControls.add(panelNotLoggedIn, "card2");
+
+        panelCustomerLogin.setBackground(new java.awt.Color(255, 51, 51));
+        panelCustomerLogin.setOpaque(false);
+
+        lblGreet1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblGreet1.setText("<html>Hi Abdullah, welcome back!</html>");
+
+        lblItems.setText("Items in Cart : 0");
+
+        lblMessages.setText("Messages : 0");
+
+        btnViewCart.setText("View Cart");
+        btnViewCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCartActionPerformed(evt);
+            }
+        });
+
+        btnMessages.setText("Messages");
+        btnMessages.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMessagesActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCustomerLoginLayout = new javax.swing.GroupLayout(panelCustomerLogin);
+        panelCustomerLogin.setLayout(panelCustomerLoginLayout);
+        panelCustomerLoginLayout.setHorizontalGroup(
+            panelCustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCustomerLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGreet1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMessages, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewCart, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMessages, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        panelCustomerLoginLayout.setVerticalGroup(
+            panelCustomerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCustomerLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblGreet1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblItems, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMessages, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewCart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMessages)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogout)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        panelAccountControls.add(panelCustomerLogin, "card3");
+
+        panelAdminLogin.setBackground(new java.awt.Color(255, 153, 51));
+        panelAdminLogin.setOpaque(false);
+
+        lblCustomerName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblCustomerName.setText("Abdullah");
+
+        lblItems1.setText("Items in Cart : 0");
+
+        btnViewCart1.setText("View Cart");
+        btnViewCart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCart1ActionPerformed(evt);
+            }
+        });
+
+        btnCancelPhoneOrder.setText("Cancel Phone Order");
+        btnCancelPhoneOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelPhoneOrderActionPerformed(evt);
+            }
+        });
+
+        lblGreet3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblGreet3.setText("<html>Placing Phone Order For Customer : </html>");
+
+        javax.swing.GroupLayout panelAdminLoginLayout = new javax.swing.GroupLayout(panelAdminLogin);
+        panelAdminLogin.setLayout(panelAdminLoginLayout);
+        panelAdminLoginLayout.setHorizontalGroup(
+            panelAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAdminLoginLayout.createSequentialGroup()
+                .addGroup(panelAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGreet3, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblItems1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnViewCart1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelPhoneOrder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 23, Short.MAX_VALUE))
+        );
+        panelAdminLoginLayout.setVerticalGroup(
+            panelAdminLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAdminLoginLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblGreet3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblItems1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnViewCart1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelPhoneOrder)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        panelAccountControls.add(panelAdminLogin, "card4");
+
+        panelProductInfo.setBackground(new java.awt.Color(51, 51, 255));
+        panelProductInfo.setOpaque(false);
+
+        jLabel3.setText("Product Name");
+
+        txtProductName.setEditable(false);
+
+        jLabel4.setText("Supplier Name");
+
+        txtSupplierName.setEditable(false);
+
+        jLabel5.setText("Price");
+
+        txtPrice.setEditable(false);
+
+        jLabel6.setText("Production Date");
+
+        ftxtProductionDate.setEditable(false);
+        ftxtProductionDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/MM/yyyy"))));
+        ftxtProductionDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtProductionDateActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Quantity");
+
+        spnQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        btnAddToCart.setText("Add To Cart");
+
+        btnViewReview.setText("View Reviews");
+        btnViewReview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewReviewActionPerformed(evt);
+            }
+        });
+
+        lblProductImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel8.setBackground(java.awt.SystemColor.controlHighlight);
+        jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel8.setOpaque(true);
+
+        javax.swing.GroupLayout panelProductInfoLayout = new javax.swing.GroupLayout(panelProductInfo);
+        panelProductInfo.setLayout(panelProductInfoLayout);
+        panelProductInfoLayout.setHorizontalGroup(
+            panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProductInfoLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProductInfoLayout.createSequentialGroup()
+                        .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnViewReview))
+                    .addComponent(jLabel4)
+                    .addGroup(panelProductInfoLayout.createSequentialGroup()
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtSupplierName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ftxtProductionDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spnQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelProductInfoLayout.setVerticalGroup(
+            panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProductInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProductInfoLayout.createSequentialGroup()
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtSupplierName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(ftxtProductionDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAddToCart)
+                            .addComponent(btnViewReview)))
+                    .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelTop.setBackground(new java.awt.Color(0, 51, 51));
+        panelTop.setOpaque(false);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Welcome To Happy Shoppers");
+
+        jLabel2.setText("Search For Products");
+
+        txtSearchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchBarActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Categories", "Beverages", "Canned Goods", "Dairy", "Frozen Foods", "Fruits", "Meat", "Vegetables" }));
+        cmbFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFilterActionPerformed(evt);
+            }
+        });
+
+        cmbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Price Highest to Lowest", "Price Lowest to Highest", "Quantity Highest to Lowest", "Quantity Lowest to Highest", "Production Date Latest to Oldest", "Production Date Oldest to Latest" }));
+        cmbSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSortActionPerformed(evt);
+            }
+        });
+
+        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier City..." }));
+
+        javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
+        panelTop.setLayout(panelTopLayout);
+        panelTopLayout.setHorizontalGroup(
+            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTopLayout.createSequentialGroup()
+                    .addGap(57, 57, 57)
+                    .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(201, 201, 201))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelTopLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(58, Short.MAX_VALUE)))
+        );
+        panelTopLayout.setVerticalGroup(
+            panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTopLayout.createSequentialGroup()
+                    .addGap(2, 2, 2)
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
+                    .addGroup(panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch)
+                        .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
+        panelContainer.setLayout(panelContainerLayout);
+        panelContainerLayout.setHorizontalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelContainerLayout.createSequentialGroup()
+                .addComponent(panelProductInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelAccountControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelContainerLayout.setVerticalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelContainerLayout.createSequentialGroup()
+                .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelProductInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelAccountControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchBarActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cmbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbFilterActionPerformed
+
+    private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSortActionPerformed
+
+    private void ftxtProductionDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtProductionDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtProductionDateActionPerformed
+
+    private void btnViewReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReviewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewReviewActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Showing logged out controls only
+        panelAccountControls.removeAll();
+        panelAccountControls.repaint();
+        panelAccountControls.revalidate();
+        
+        panelAccountControls.add(panelCustomerLogin);
+        
+        panelAccountControls.repaint();
+        panelAccountControls.revalidate();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnViewCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewCartActionPerformed
+
+    private void btnMessagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessagesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMessagesActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnViewCart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCart1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewCart1ActionPerformed
+
+    private void btnCancelPhoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPhoneOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelPhoneOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +601,50 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddToCart;
+    private javax.swing.JButton btnCancelPhoneOrder;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnMessages;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnViewCart;
+    private javax.swing.JButton btnViewCart1;
+    private javax.swing.JButton btnViewReview;
+    private javax.swing.JComboBox<String> cmbFilter;
+    private javax.swing.JComboBox<String> cmbLocation;
+    private javax.swing.JComboBox<String> cmbSort;
+    private javax.swing.JFormattedTextField ftxtProductionDate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCustomerName;
+    private javax.swing.JLabel lblGreet;
+    private javax.swing.JLabel lblGreet1;
+    private javax.swing.JLabel lblGreet3;
+    private javax.swing.JLabel lblItems;
+    private javax.swing.JLabel lblItems1;
+    private javax.swing.JLabel lblMessages;
+    private javax.swing.JLabel lblProductImage;
+    private javax.swing.JPanel panelAccountControls;
+    private javax.swing.JPanel panelAdminLogin;
+    private javax.swing.JPanel panelContainer;
+    private javax.swing.JPanel panelCustomerLogin;
+    private javax.swing.JPanel panelNotLoggedIn;
+    private javax.swing.JPanel panelProductInfo;
+    private javax.swing.JPanel panelTop;
+    private javax.swing.JSpinner spnQuantity;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtProductName;
+    private javax.swing.JTextField txtSearchBar;
+    private javax.swing.JTextField txtSupplierName;
     // End of variables declaration//GEN-END:variables
 }
