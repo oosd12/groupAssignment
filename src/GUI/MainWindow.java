@@ -530,7 +530,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
         
-        panelAccountControls.add(panelCustomerLogin);
+        panelAccountControls.add(panelAdminLogin);
         
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
