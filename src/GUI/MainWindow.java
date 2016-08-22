@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import CoreClasses.Product;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Abdullah
@@ -16,6 +21,22 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+    }
+    
+    public void adjustColumns(){
+        TableColumnModel tcm = tblProducts.getColumnModel();
+        tcm.removeColumn(tcm.getColumn(0));//removing product ID
+        tcm.removeColumn(tcm.getColumn(0));//removing supplier ID
+        tcm.getColumn(0).setHeaderValue("Product");
+        tcm.getColumn(1).setHeaderValue("Supplier");
+        tcm.getColumn(2).setHeaderValue("Quantity");
+        tcm.getColumn(3).setHeaderValue("Manufactured");
+        tcm.getColumn(4).setHeaderValue("Price");
+        tcm.getColumn(5).setHeaderValue("Category");
+        
+        //adjusting cell widths of the table
+        tcm.getColumn(2).setMaxWidth(70);
+        tcm.getColumn(4).setMaxWidth(70);
     }
 
     /**
@@ -527,10 +548,17 @@ public class MainWindow extends javax.swing.JFrame {
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
         
-        panelAccountControls.add(panelAdminLogin);
+        panelAccountControls.add(panelNotLoggedIn);
         
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
+        
+        Product p = new Product();
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
+        adjustColumns();
+
+       
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
