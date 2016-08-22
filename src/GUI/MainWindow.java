@@ -6,7 +6,16 @@
 package GUI;
 
 import CoreClasses.Product;
-import javax.swing.table.TableColumn;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
@@ -15,18 +24,38 @@ import net.proteanit.sql.DbUtils;
  * @author Abdullah
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    int productID,supplierID,quantity;
+    
+    
     /**
      * Creates new form MainWindow3
      */
     public MainWindow() {
         initComponents();
+        String s; 
+        s= "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
+         
+        try {
+            javax.swing.UIManager.setLookAndFeel(s);
+            SwingUtilities.updateComponentTreeUI(this);
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+        }
     }
+    
+    
     
     public void adjustColumns(){
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
         tcm.removeColumn(tcm.getColumn(0));//removing supplier ID
+        tcm.removeColumn(tcm.getColumn(6));//removing supplier ID
         tcm.getColumn(0).setHeaderValue("Product");
         tcm.getColumn(1).setHeaderValue("Supplier");
         tcm.getColumn(2).setHeaderValue("Quantity");
@@ -38,6 +67,8 @@ public class MainWindow extends javax.swing.JFrame {
         tcm.getColumn(2).setMaxWidth(70);
         tcm.getColumn(4).setMaxWidth(70);
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,7 +182,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(btnRegister)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         panelAccountControls.add(panelNotLoggedIn, "card2");
@@ -217,7 +248,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(btnMessages)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogout)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         panelAccountControls.add(panelCustomerLogin, "card3");
@@ -274,7 +305,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(btnViewCart1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelPhoneOrder)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         panelAccountControls.add(panelAdminLogin, "card4");
@@ -402,6 +433,11 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProducts);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -479,7 +515,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -498,10 +534,10 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(panelContainerLayout.createSequentialGroup()
                 .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelProductInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelAccountControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelAccountControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelProductInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -512,7 +548,9 @@ public class MainWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -556,7 +594,9 @@ public class MainWindow extends javax.swing.JFrame {
         Product p = new Product();
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
         adjustColumns();
-
+        
+ 
+        
        
         
     }//GEN-LAST:event_formWindowOpened
@@ -588,6 +628,40 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnCancelPhoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPhoneOrderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelPhoneOrderActionPerformed
+
+    private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked
+        int row = tblProducts.getSelectedRow();
+        this.productID = Integer.parseInt((tblProducts.getModel().getValueAt(row,0).toString()));
+        this.supplierID = Integer.parseInt((tblProducts.getModel().getValueAt(row,1).toString()));
+        
+        txtProductName.setText((tblProducts.getModel().getValueAt(row,2).toString()));
+        txtSupplierName.setText((tblProducts.getModel().getValueAt(row,3).toString()));
+        txtPrice.setText((tblProducts.getModel().getValueAt(row,6).toString()));
+        ftxtProductionDate.setText((tblProducts.getModel().getValueAt(row,5).toString()));
+        
+        
+        //Getting the image for the product and loading it into the label
+        String image_link = tblProducts.getModel().getValueAt(row,8).toString();
+        Image image = null;
+        try {
+            URL url = new URL(""+image_link);
+            image = ImageIO.read(url);
+        } catch (IOException e) {
+            System.out.println("Error "+ e);
+        }
+        Image scaledInstance = image.getScaledInstance(193, 162, Image.SCALE_DEFAULT);
+        ImageIcon icon = new ImageIcon(scaledInstance); 
+        lblProductImage.setIcon(icon);
+        
+        
+        //Setting the spinner maximum
+        int maxQuantity = Integer.parseInt((tblProducts.getModel().getValueAt(row,4).toString()));
+        SpinnerNumberModel model = new SpinnerNumberModel(1, 1, maxQuantity, 1);
+        spnQuantity.setModel(model);
+        
+        
+       
+    }//GEN-LAST:event_tblProductsMouseClicked
 
     /**
      * @param args the command line arguments
