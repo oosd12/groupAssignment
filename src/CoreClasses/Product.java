@@ -19,7 +19,7 @@ public class Product {
         ResultSet rs = null;
         java.sql.Connection conn = new DBConnector().connect();
         try{
-            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category " +
+            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link " +
                         "FROM Supplier_Product sp " +
                         "JOIN Supplier s on sp.supplier_id = s.supplier_id "+
                         "JOIN Product p on sp.product_id = p.product_id";
