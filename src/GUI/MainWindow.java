@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
 import CoreClasses.Product;
+import CoreClasses.ShoppingCart;
 import CoreClasses.Supplier;
 import java.awt.Image;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -27,11 +30,16 @@ import net.proteanit.sql.DbUtils;
 public class MainWindow extends javax.swing.JFrame {
     int productID,supplierID,quantity;
     
-    Product p = new Product();
+    Product p = new Product();    
+    Customer c = new Customer();
+    ShoppingCart sc = new ShoppingCart();
+    
+   
     /**
      * Creates new form MainWindow3
      */
     public MainWindow() {
+        //look & feel
         initComponents();
         String s; 
         s= "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
@@ -40,14 +48,56 @@ public class MainWindow extends javax.swing.JFrame {
             javax.swing.UIManager.setLookAndFeel(s);
             SwingUtilities.updateComponentTreeUI(this);
           
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
         }
+        
+        //Showing logged out controls only
+        panelAccountControls.removeAll();
+        panelAccountControls.repaint();
+        panelAccountControls.revalidate();
+        
+        panelAccountControls.add(panelNotLoggedIn);
+        
+        panelAccountControls.repaint();
+        panelAccountControls.revalidate();
+    }
+    
+    public MainWindow(int userType) {
+        //Setting look and feel
+        initComponents();
+        String s; 
+        s= "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
+         
+        try {
+            javax.swing.UIManager.setLookAndFeel(s);
+            SwingUtilities.updateComponentTreeUI(this);
+          
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+        }
+        
+        if(userType == 1){
+            //Showing customer controls 
+            panelAccountControls.removeAll();
+            panelAccountControls.repaint();
+            panelAccountControls.revalidate();
+
+            panelAccountControls.add(panelCustomerLogin);
+
+            panelAccountControls.repaint();
+            panelAccountControls.revalidate();
+            
+            //Showing greeting message
+            lblGreet1.setText("Hi "+c.getCurrentCustomerName()+", welcome back!");
+        }
+    }
+    
+    public void refreshTable(){
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
+        adjustColumns();
     }
     
     
@@ -127,6 +177,13 @@ public class MainWindow extends javax.swing.JFrame {
         cmbLocation = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -341,6 +398,11 @@ public class MainWindow extends javax.swing.JFrame {
         spnQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         btnAddToCart.setText("Add To Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
 
         btnViewReview.setText("View Reviews");
         btnViewReview.addActionListener(new java.awt.event.ActionListener() {
@@ -590,22 +652,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewReviewActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //Showing logged out controls only
-        panelAccountControls.removeAll();
-        panelAccountControls.repaint();
-        panelAccountControls.revalidate();
-        
-        panelAccountControls.add(panelNotLoggedIn);
-        
-        panelAccountControls.repaint();
-        panelAccountControls.revalidate();
-        
-        
-        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
-        adjustColumns();
+
+        refreshTable();
         
         Supplier s = new Supplier();
-        
         //Display all supplier locations (cities)
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
        
@@ -613,7 +663,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+       Login l = new Login();
+       l.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -621,7 +672,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnViewCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCartActionPerformed
-        // TODO add your handling code here:
+        new ShoppingCartGUI().setVisible(true);
     }//GEN-LAST:event_btnViewCartActionPerformed
 
     private void btnMessagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessagesActionPerformed
@@ -673,6 +724,16 @@ public class MainWindow extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_tblProductsMouseClicked
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        refreshTable();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        
+        sc.addToCart(this.productID, this.supplierID, (int) spnQuantity.getValue());
+        JOptionPane.showMessageDialog(null, spnQuantity.getValue()+" "+txtProductName.getText()+" added to shopping cart", "Added to cart", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
     /**
      * @param args the command line arguments
