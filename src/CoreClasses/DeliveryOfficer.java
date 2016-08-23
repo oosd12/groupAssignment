@@ -5,10 +5,30 @@
  */
 package CoreClasses;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abdullah
  */
 public class DeliveryOfficer extends Officer{
     
+    public ResultSet displayDelivery(){
+        ResultSet rs = null;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT *" +
+                        "FROM Order_Product op" +
+                        "WHERE op.delivery_status = Pending";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return rs;
+    }
 }
