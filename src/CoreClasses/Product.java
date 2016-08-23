@@ -72,9 +72,7 @@ public class Product {
                         " JOIN Supplier s on sp.supplier_id = s.supplier_id  "+
                         " JOIN Product p on sp.product_id = p.product_id WHERE s.city LIKE ? AND p.name LIKE ? AND p.category LIKE ? "+
                         sortCondition;
-                        
-                       
-            
+
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, "%"+location+"%");
             ps.setString(2, "%"+keyword+"%");
