@@ -53,7 +53,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     
-    
     public void adjustColumns(){
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
