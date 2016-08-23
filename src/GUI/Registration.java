@@ -5,12 +5,13 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
 /**
  *
  * @author Neshan
  */
 public class Registration extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form Registration
      */
@@ -27,6 +28,7 @@ public class Registration extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MsgRegister = new javax.swing.JOptionPane();
         lblRegistration = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
@@ -56,15 +58,27 @@ public class Registration extends javax.swing.JFrame {
 
         btnRegister.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnRegister.setText("Register");
-        btnRegister.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         btnReset.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnReset.setText("Reset");
-        btnReset.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         btnCancel.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnCancel.setText("Cancel");
-        btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -225,6 +239,46 @@ public class Registration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPostcodeActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        
+        txtName.setText("");
+        txtEmail.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtPostcode.setText("");
+        txtContactno.setText("");
+        txtPassword.setText("");
+           
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+
+        String UserID = txtUserID.getText();
+        String Name = txtName.getText();
+        String Email = txtEmail.getText();
+        String Street = txtStreet.getText();
+        String City = txtCity.getText();
+        String Postcode = txtPostcode.getText();
+        String ContactNo = txtContactno.getText();
+        String Password = txtPassword.getText();
+        
+        Customer c1 = new Customer();
+        
+        if(c1.isUserExist(Email)){
+            MsgRegister.showMessageDialog(this, "Customer is already in the system");
+        }
+        else {
+            c1.insertUser(UserID, Name, Email, Street, City, Postcode, ContactNo, Password);
+            MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
+            }
+        
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+        MainWindow m1 = new MainWindow();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +315,7 @@ public class Registration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JOptionPane MsgRegister;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnReset;

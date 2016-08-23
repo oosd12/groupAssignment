@@ -5,10 +5,55 @@
  */
 package CoreClasses;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.Statement;
 /**
  *
  * @author Abdullah
  */
 public class Customer extends User{
     
+    Statement stmt;
+    
+    public boolean isUserExist(String Email){
+        boolean flag = false;
+        
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT * " +
+                        "FROM `User` u"+
+                        "WHERE email = "+Email+"";
+            stmt=conn.createStatement();
+            ResultSet Rs = stmt.executeQuery(sql);
+            while(Rs.next()){
+                flag = true;
+            }
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeQuery();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return flag;
+    }
+    
+    public boolean insertUser(String UserID,String Name,String Email,String Street,String City,String Postcode,String ContactNo,String Password){
+        boolean flag = false;
+        java.sql.Connection conn = new DBConnector().connect();
+        String sql = "Insert Into `User` u values ('"+UserID+"','"+Name+"','"+Email+"','"+Street+"','"+City+"','"+Postcode+"','"+ContactNo+"','"+Password+"')";
+        
+        try {
+            stmt=conn.createStatement();
+            if(stmt.executeUpdate(sql)>0){
+                flag = true;
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return flag;
+    }
 }
