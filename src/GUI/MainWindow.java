@@ -51,7 +51,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     
-    
     public void adjustColumns(){
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
@@ -618,7 +617,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnViewCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCartActionPerformed
