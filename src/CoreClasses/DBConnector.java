@@ -9,6 +9,7 @@ package CoreClasses;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Abdullah
@@ -22,6 +23,7 @@ public class DBConnector {
         }
         catch(ClassNotFoundException cnfe){
             System.out.println("Connection failed" + cnfe);
+            JOptionPane.showMessageDialog(null, "Database connection failed, please check your internet connection", "Connection Failure", JOptionPane.ERROR_MESSAGE);
         }
         String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
         try{
