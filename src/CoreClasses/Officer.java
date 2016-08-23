@@ -9,6 +9,6 @@ package CoreClasses;
  *
  * @author Abdullah
  */
-public class Officer extends User{
+public abstract class Officer extends User{
     
 }
