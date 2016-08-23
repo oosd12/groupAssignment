@@ -19,8 +19,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
-import ca.odell.glazedlists.GlazedLists;
-import ca.odell.glazedlists.swing.AutoCompleteSupport;
 
 /**
  *
