@@ -106,5 +106,31 @@ public class Product {
         
         
     }
+    
+    public void adjustQuantity(String operation, int quantity, int supplierID, int productID){
+       
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql = "";
+            if(operation.equals("Increase")){
+                sql= "UPDATE Supplier_Product SET `quantity_available` = `quantity_available` + ? WHERE supplier_id = ? AND product_id = ? ";
+            }
+            else if(operation.equals("Decrease")){
+                sql= "UPDATE Supplier_Product SET `quantity_available` = `quantity_available` - ? WHERE supplier_id = ? AND product_id = ? ";
+            }
+            
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, quantity);
+            ps.setInt(2, supplierID);
+            ps.setInt(3, productID);
+            
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
 }
 
