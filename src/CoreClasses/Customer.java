@@ -17,6 +17,7 @@ import java.sql.Statement;
 public class Customer extends User{
     
     Statement stmt;
+    private static String currentCustomer;
     
     public boolean isUserExist(String Email){
         boolean flag = false;
@@ -56,4 +57,56 @@ public class Customer extends User{
         }
         return flag;
     }
+    
+    public String getCurrentCustomerName(){
+        ResultSet rs = null;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT name FROM User WHERE email = ?  ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ""+getCurrentCustomer());
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString(1);
+            }
+ 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+        return "CUSTOMER_NAME";
+    }
+    
+    public int getCurrentCustomerID(){
+        ResultSet rs = null;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT user_id FROM User WHERE email = ?  ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ""+getCurrentCustomer());
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+ 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+        return 0;
+    }
+    
+    public static String getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+    public static void setCurrentCustomer(String currentCustomer) {
+        Customer.currentCustomer = currentCustomer;
+    }
+    
+    
+    
+    
 }
