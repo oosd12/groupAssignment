@@ -32,4 +32,10 @@ public class Product {
         
         return rs;
     }
+    
+    public ResultSet searchForProducts(String keyword, String category, String filter, String sort, String location){
+        ResultSet rs = null;
+        return rs;
+        
+    }
 }
