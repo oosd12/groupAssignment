@@ -23,7 +23,6 @@ public class DBConnector {
         }
         catch(ClassNotFoundException cnfe){
             System.out.println("Connection failed" + cnfe);
-            JOptionPane.showMessageDialog(null, "Database connection failed, please check your internet connection", "Connection Failure", JOptionPane.ERROR_MESSAGE);
         }
         String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
         try{
@@ -32,6 +31,7 @@ public class DBConnector {
         }
         catch(SQLException se){
             System.out.println("Database Not Found " + se);
+            JOptionPane.showMessageDialog(null, "Database connection failed, please check your internet connection", "Connection Failure", JOptionPane.ERROR_MESSAGE);
         }
         return DBConnection;
     }
