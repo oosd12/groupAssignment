@@ -5,12 +5,13 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
 /**
  *
  * @author Neshan
  */
 public class Registration extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form Registration
      */
@@ -255,7 +256,17 @@ public class Registration extends javax.swing.JFrame {
         String Postcode = txtPostcode.getText();
         String ContactNo = txtContactno.getText();
         String Password = txtPassword.getText();
- 
+        
+        Customer c1 = new Customer();
+        
+        if(c1.isUserExist(Email)){
+            MsgRegister.showMessageDialog(this, "Customer is already in the system");
+        }
+        else {
+            c1.insertUser(UserID, Name, Email, Street, City, Postcode, ContactNo, Password);
+            MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
+            }
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
