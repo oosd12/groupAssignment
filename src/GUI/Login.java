@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
+import CoreClasses.DBConnector;
+import CoreClasses.User;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abdullah
@@ -16,6 +23,40 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+    }
+    
+    public int login(String email, String password){
+        ResultSet rs = null;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT user_type FROM User WHERE email = ? AND password = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ""+email);
+            ps.setString(2, ""+password);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                switch (rs.getString(1)) {
+                    case "Customer":
+                        return 1;
+                    case "Administrator":
+                        return 2;
+                    case "Delivery Officer":
+                        return 3;
+                    case "Collection Officer":
+                        return 4;
+                    default:
+                        return 0;
+                }
+            }
+           
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+        return -1;
     }
 
     /**
@@ -35,7 +76,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,7 +170,24 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        int loginStatus = login(txtEmail.getText(), pwdPassword.getText());
+        if(loginStatus == 0){
+            JOptionPane.showMessageDialog(null, "Invalid email or password, please try again", "Login Failure", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(loginStatus == 1){
+            
+            Customer.setCurrentCustomer(txtEmail.getText());
+            JOptionPane.showMessageDialog(null, "Logged in successfully !", "Login Success", JOptionPane.INFORMATION_MESSAGE);
+
+            java.awt.Window win[] = MainWindow.getWindows();
+            for(int i=0;i<win.length;i++){
+                win[i].dispose();
+            }
+            
+            MainWindow m = new MainWindow(loginStatus);
+            m.setVisible(true);
+        }
+        System.out.println("status : "+loginStatus);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -163,7 +221,7 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
