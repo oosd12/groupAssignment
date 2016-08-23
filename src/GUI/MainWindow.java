@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Product;
+import CoreClasses.Supplier;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
+import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.swing.AutoCompleteSupport;
 
 /**
  *
@@ -26,7 +29,7 @@ import net.proteanit.sql.DbUtils;
 public class MainWindow extends javax.swing.JFrame {
     int productID,supplierID,quantity;
     
-    
+    Product p = new Product();
     /**
      * Creates new form MainWindow3
      */
@@ -62,6 +65,7 @@ public class MainWindow extends javax.swing.JFrame {
         tcm.getColumn(3).setHeaderValue("Manufactured");
         tcm.getColumn(4).setHeaderValue("Price");
         tcm.getColumn(5).setHeaderValue("Category");
+        tcm.getColumn(6).setHeaderValue("City");
         
         //adjusting cell widths of the table
         tcm.getColumn(2).setMaxWidth(70);
@@ -561,7 +565,15 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchBarActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        //Getting the conditions to search for
+        String keyword = txtSearchBar.getText();
+        String filter = cmbFilter.getSelectedItem().toString();
+        String sort = cmbSort.getSelectedItem().toString();
+        String location = cmbLocation.getSelectedItem().toString();
+        
+       
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.searchForProducts(keyword, filter, sort, location)));
+        adjustColumns();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cmbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFilterActionPerformed
@@ -591,12 +603,14 @@ public class MainWindow extends javax.swing.JFrame {
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
         
-        Product p = new Product();
+        
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
         adjustColumns();
         
- 
+        Supplier s = new Supplier();
         
+        //Display all supplier locations (cities)
+        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
        
         
     }//GEN-LAST:event_formWindowOpened

@@ -5,12 +5,13 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
 /**
  *
  * @author Neshan
  */
 public class Registration extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form Registration
      */
@@ -73,6 +74,11 @@ public class Registration extends javax.swing.JFrame {
 
         btnCancel.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -255,8 +261,23 @@ public class Registration extends javax.swing.JFrame {
         String Postcode = txtPostcode.getText();
         String ContactNo = txtContactno.getText();
         String Password = txtPassword.getText();
- 
+        
+        Customer c1 = new Customer();
+        
+        if(c1.isUserExist(Email)){
+            MsgRegister.showMessageDialog(this, "Customer is already in the system");
+        }
+        else {
+            c1.insertUser(UserID, Name, Email, Street, City, Postcode, ContactNo, Password);
+            MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
+            }
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+        MainWindow mw1 = new MainWindow();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
