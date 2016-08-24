@@ -5,17 +5,45 @@
  */
 package GUI;
 
+import CoreClasses.Admin;
+import CoreClasses.Customer;
+import CoreClasses.Product;
+import CoreClasses.Supplier;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Abdullah
  */
 public class AdminDashboard extends javax.swing.JFrame {
-
+    Product p = new Product();
     /**
      * Creates new form AdminDashboard
      */
     public AdminDashboard() {
         initComponents();
+    }
+    
+    public void refreshTable(){
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAllSupplies()));        
+        adjustColumns();
+    }
+    
+    public void adjustColumns(){
+        TableColumnModel tcm = tblProducts.getColumnModel();
+        tcm.getColumn(0).setHeaderValue("Product ID");
+        tcm.getColumn(1).setHeaderValue("Supplier ID");
+        tcm.getColumn(2).setHeaderValue("Product");
+        tcm.getColumn(3).setHeaderValue("Supplier");
+        tcm.getColumn(4).setHeaderValue("Quantity Available");
+        tcm.getColumn(5).setHeaderValue("Manufactured");
+        tcm.getColumn(6).setHeaderValue("Price");
+        tcm.getColumn(7).setHeaderValue("Category");
+        tcm.getColumn(8).setHeaderValue("City");
+        
+        
     }
 
     /**
@@ -49,6 +77,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Administrator's Area");
@@ -128,6 +161,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnMessages.setText("Customer Messages");
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,13 +233,10 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addComponent(btnGenerateReports)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSpecialOffers)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMessages)))
+                    .addComponent(jLabel5)
+                    .addComponent(btnMessages))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogout)
@@ -217,7 +252,14 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchBarActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        String keyword = txtSearchBar.getText();
+        String filter = cmbFilter.getSelectedItem().toString();
+        String sort = cmbSort.getSelectedItem().toString();
+        String location = cmbLocation.getSelectedItem().toString();
+        
+       
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.searchAllSupplies(keyword, filter, sort, location)));
+        adjustColumns();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cmbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFilterActionPerformed
@@ -227,6 +269,27 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void cmbSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSortActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSortActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        refreshTable();
+        Supplier s = new Supplier();
+        //Display all supplier locations (cities)
+        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
+       
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        Admin.setCurrentAdmin("");
+        JOptionPane.showMessageDialog(this, "Logged out successfully", "Logout Successful", JOptionPane.INFORMATION_MESSAGE);
+        
+        //Closing all open windows
+        java.awt.Window win[] = java.awt.Window.getWindows();
+        for(int i=0;i<win.length;i++){
+            win[i].dispose();
+        }
+        
+        new MainWindow().setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
