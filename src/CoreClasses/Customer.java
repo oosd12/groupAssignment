@@ -106,6 +106,31 @@ public class Customer extends User{
         Customer.currentCustomer = currentCustomer;
     }
     
+    public String[] getPersonalDetails(){
+        String[] personalDetails = new String[3];
+        ResultSet rs = null;
+        
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT name,contact_number FROM User WHERE email = ?  ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, getCurrentCustomer());
+            rs = ps.executeQuery();
+            if(rs.next()){
+               personalDetails[0] = rs.getString(1);
+               personalDetails[1] = rs.getString(2);
+               personalDetails[2] = getCurrentCustomer();
+               
+               return personalDetails;
+            }
+ 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return personalDetails;
+    }
     
     
     
