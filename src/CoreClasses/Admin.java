@@ -10,5 +10,15 @@ package CoreClasses;
  * @author Abdullah
  */
 public class Admin extends User{
+    private static String currentAdmin = "";
+
+    public static String getCurrentAdmin() {
+        return currentAdmin;
+    }
+
+    public static void setCurrentAdmin(String currentAdmin) {
+        Admin.currentAdmin = currentAdmin;
+    }
+    
     
 }
