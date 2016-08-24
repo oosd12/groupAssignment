@@ -98,6 +98,21 @@ public class MainWindow extends javax.swing.JFrame {
     public void refreshTable(){
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
         adjustColumns();
+        txtProductName.setText("");
+        txtSupplierName.setText("");
+        txtPrice.setText("");
+        ftxtProductionDate.setText("");
+        
+        
+    }
+    
+    public void disableButton(){ 
+        if(txtProductName.getText().equals("")){
+            btnAddToCart.setEnabled(false);
+        }
+        else{
+            btnAddToCart.setEnabled(true);
+        }        
     }
     
     
@@ -654,7 +669,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         refreshTable();
-        
+        disableButton();
         Supplier s = new Supplier();
         //Display all supplier locations (cities)
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
@@ -680,7 +695,17 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMessagesActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
+        sc.emptyShoppingCart();
+        Customer.setCurrentCustomer("");
+        JOptionPane.showMessageDialog(this, "Logged out successfully", "Logout Successful", JOptionPane.INFORMATION_MESSAGE);
+        
+        //Closing all open windows
+        java.awt.Window win[] = java.awt.Window.getWindows();
+        for(int i=0;i<win.length;i++){
+            win[i].dispose();
+        }
+        
+        new MainWindow().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnViewCart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCart1ActionPerformed
@@ -721,7 +746,7 @@ public class MainWindow extends javax.swing.JFrame {
         SpinnerNumberModel model = new SpinnerNumberModel(1, 1, maxQuantity, 1);
         spnQuantity.setModel(model);
         
-        
+        disableButton();
        
     }//GEN-LAST:event_tblProductsMouseClicked
 
@@ -730,9 +755,21 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        //if order customer is not logged in or phone order is not being placed do not add to cart
+        if(Customer.getCurrentCustomer() == null){
+            JOptionPane.showMessageDialog(this, "You are not logged in, cannot add to cart.\n Please register and login to add items to your shopping cart", "Please Login", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Customer.getCurrentCustomer().equals("")){
+            JOptionPane.showMessageDialog(this, "You are not logged in, cannot add to cart.\n Please register and login to add items to your shopping cart", "Please Login", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            sc.addToCart(this.productID, this.supplierID, (int) spnQuantity.getValue());
+            JOptionPane.showMessageDialog(null, spnQuantity.getValue()+" "+txtProductName.getText()+" added to shopping cart", "Added to cart", JOptionPane.INFORMATION_MESSAGE);
+            refreshTable();
+        }
         
-        sc.addToCart(this.productID, this.supplierID, (int) spnQuantity.getValue());
-        JOptionPane.showMessageDialog(null, spnQuantity.getValue()+" "+txtProductName.getText()+" added to shopping cart", "Added to cart", JOptionPane.INFORMATION_MESSAGE);
+//JOptionPane.showMessageDialog(null, ""+Customer.getCurrentCustomer(), "Added to cart", JOptionPane.INFORMATION_MESSAGE);
+        disableButton();
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     /**
