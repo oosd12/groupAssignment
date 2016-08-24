@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class Customer extends User{
     
     Statement stmt;
-    private static String currentCustomer;
+    private static String currentCustomer = "";
     
     public boolean isUserExist(String Email){
         boolean flag = false;
