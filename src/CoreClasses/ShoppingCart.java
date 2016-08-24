@@ -8,6 +8,7 @@ package CoreClasses;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,4 +111,51 @@ public class ShoppingCart {
         
         
     }
+    
+    
+    
+    public ArrayList getCheckoutList(){
+        ResultSet rs = null;
+        ArrayList<String> details = new ArrayList<>();
+        double total = 0;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT sci.quantity, p.name, sp.price, (sci.quantity * sp.price) AS NewColumn " +
+                        "FROM ShoppingCartItem sci " +
+                        "JOIN Product p on sci.product_id = p.product_id "+
+                        "JOIN Supplier_Product sp on sci.product_id = sp.product_id AND sci.supplier_id = sp.supplier_id "+
+                        "WHERE sci.user_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                details.add(rs.getInt(1)+" X "+rs.getString(2)+" - Rs. "+rs.getDouble(4));
+                total += rs.getDouble(4);
+            }
+            
+            //last element in the arraylist is the gross total
+            details.add(total+"");
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return details;
+    }
+    
+    public void checkoutCart(){
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "DELETE FROM ShoppingCartItem WHERE  user_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    
 }
