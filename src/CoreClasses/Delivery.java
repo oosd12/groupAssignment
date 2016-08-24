@@ -5,10 +5,61 @@
  */
 package CoreClasses;
 
+import static CoreClasses.Customer.getCurrentCustomer;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abdullah
  */
 public class Delivery {
+    Customer c = new Customer();
+    public void addDeliveryAddress(String street, String city, String postCode, int orderID){
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "INSERT INTO DeliveryAddress (street, city, post_code, order_id) VALUES (?, ?, ?, ?) ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, street);
+            ps.setString(2, city);
+            ps.setString(3, postCode);
+            ps.setInt(4, orderID);
+            
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     
+    public String[] getLastDeliveryAddress(){
+        String[] address = new String[3];
+        ResultSet rs = null;
+        
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT da.street, da.city, da.post_code " +
+                        "FROM DeliveryAddress da " +
+                        "JOIN `sql6131484`.`Order` o on da.order_id = o.order_id "+
+                        "WHERE o.user_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+            rs = ps.executeQuery();
+            if(rs.next()){
+               address[0] = rs.getString(1);
+               address[1] = rs.getString(2);
+               address[2] = rs.getString(3);
+               
+               return address;
+            }
+ 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return address;
+    }
 }
