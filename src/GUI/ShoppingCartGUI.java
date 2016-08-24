@@ -14,6 +14,7 @@ import net.proteanit.sql.DbUtils;
  * @author Abdullah
  */
 public class ShoppingCartGUI extends javax.swing.JFrame {
+    int productID,supplierID;
     ShoppingCart s = new ShoppingCart();
     /**
      * Creates new form ShoppingCart
@@ -25,6 +26,24 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
     public void refreshTable(){
         tblCart.setModel(DbUtils.resultSetToTableModel(s.getCartItems()));
         adjustColumns();
+        calculateTotal();
+        
+        txtProductName.setText("");
+        txtSupplierName.setText("");
+        txtPrice.setText("");
+        txtQuantity.setText("");
+        ftxtProductionDate.setText("");
+        
+        
+    }
+    
+    public void disableButton(){
+        if(txtProductName.getText().equals("")){
+            btnRemoveFromCart.setEnabled(false);
+        }
+        else{
+            btnRemoveFromCart.setEnabled(true);
+        }
     }
     
     public void adjustColumns(){
@@ -40,6 +59,14 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
 
         
 
+    }
+    
+    public void calculateTotal(){
+        double total = 0;
+        for(int i = 0; i < tblCart.getRowCount(); i++){
+            total += Double.parseDouble(tblCart.getModel().getValueAt(i, 7).toString());
+        }
+        txtCartTotal.setText(""+total);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +96,7 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         btnCheckout = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -90,6 +117,11 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCartMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCart);
 
         jLabel3.setText("Product Name");
@@ -117,6 +149,11 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         jLabel7.setText("Quantity Selected");
 
         btnRemoveFromCart.setText("Remove From Cart");
+        btnRemoveFromCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveFromCartActionPerformed(evt);
+            }
+        });
 
         txtQuantity.setEditable(false);
 
@@ -210,7 +247,28 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshTable();
+        disableButton();
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCartMouseClicked
+        int row = tblCart.getSelectedRow();
+        this.productID = Integer.parseInt((tblCart.getModel().getValueAt(row,0).toString()));
+        this.supplierID = Integer.parseInt((tblCart.getModel().getValueAt(row,1).toString()));
+        
+        txtProductName.setText((tblCart.getModel().getValueAt(row,2).toString()));
+        txtSupplierName.setText((tblCart.getModel().getValueAt(row,3).toString()));
+        txtQuantity.setText((tblCart.getModel().getValueAt(row,4).toString()));
+        txtPrice.setText((tblCart.getModel().getValueAt(row,6).toString()));
+        ftxtProductionDate.setText((tblCart.getModel().getValueAt(row,5).toString()));
+        
+        disableButton();
+    }//GEN-LAST:event_tblCartMouseClicked
+
+    private void btnRemoveFromCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFromCartActionPerformed
+        s.removeFromCart(this.productID , this.supplierID, Integer.parseInt(txtQuantity.getText()));
+        refreshTable();
+        disableButton();
+    }//GEN-LAST:event_btnRemoveFromCartActionPerformed
 
     /**
      * @param args the command line arguments
