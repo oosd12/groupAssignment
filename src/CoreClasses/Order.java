@@ -47,7 +47,8 @@ public class Order {
             addToOrderProduct();
             
             if(deliveryMode.equals("Delivery")){
-                addDeliveryAddress(street, city, postCode);
+                Delivery d = new Delivery();
+                d.addDeliveryAddress(street, city, postCode, this.orderID);
             }
             
         }
@@ -96,23 +97,7 @@ public class Order {
         
     }
     
-    public void addDeliveryAddress(String street, String city, String postCode){
-        java.sql.Connection conn = new DBConnector().connect();
-        try{
-            String sql= "INSERT INTO DeliveryAddress (street, city, post_code, order_id) VALUES (?, ?, ?, ?) ";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, street);
-            ps.setString(2, city);
-            ps.setString(3, postCode);
-            ps.setInt(4, this.orderID);
-            
-            ps.executeUpdate();
-
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }
+    
     
     public java.sql.Date getTodayDate() throws ParseException{
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
