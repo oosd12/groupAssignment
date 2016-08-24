@@ -162,6 +162,11 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         txtCartTotal.setEditable(false);
 
         btnCheckout.setText("Checkout");
+        btnCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckoutActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
 
@@ -269,6 +274,10 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         refreshTable();
         disableButton();
     }//GEN-LAST:event_btnRemoveFromCartActionPerformed
+
+    private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
+        new Checkout().setVisible(true);
+    }//GEN-LAST:event_btnCheckoutActionPerformed
 
     /**
      * @param args the command line arguments
