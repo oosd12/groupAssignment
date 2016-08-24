@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Customer;
+import CoreClasses.Delivery;
 import CoreClasses.Order;
 import CoreClasses.ShoppingCart;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Checkout extends javax.swing.JFrame {
     Customer c = new Customer();
     Order o  = new Order();
     DefaultListModel<String> listModel;
+    Delivery d = new Delivery();
     /**
      * Creates new form Checkout
      */
@@ -508,6 +510,14 @@ public class Checkout extends javax.swing.JFrame {
        netTotal = ((100.0+tax)/100.0)*grossTotal;
        txtTax.setText(""+tax);
        txtNetTotal.setText(""+netTotal);
+       
+       //Setting the latest delivery address used by the customer
+       String[] tempAddress = d.getLastDeliveryAddress();
+       
+       txtStreet.setText(tempAddress[0]);
+       txtCity.setText(tempAddress[1]);
+       txtPostCode.setText(tempAddress[2]);
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
