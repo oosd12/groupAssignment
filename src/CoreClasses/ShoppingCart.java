@@ -19,7 +19,6 @@ public class ShoppingCart {
     Product p = new Product();
     
     public void addToCart(int productID, int supplierID, int quantity){
-        ResultSet rs = null;
         java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "INSERT INTO ShoppingCartItem (user_id, supplier_id, product_id, quantity) VALUES (?, ?, ?, ?) ";
@@ -36,6 +35,7 @@ public class ShoppingCart {
             JOptionPane.showMessageDialog(null,e);
         }
         
+        //Decreasing the available quantity from Supplier_Prduct table
         p.adjustQuantity("Decrease", quantity, supplierID, productID);
     }
     
@@ -58,5 +58,56 @@ public class ShoppingCart {
         }
         
         return rs;
+    }
+    
+    public void removeFromCart(int productID, int supplierID, int quantity){
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "DELETE FROM ShoppingCartItem WHERE  user_id = ? AND supplier_id = ? AND product_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+            ps.setInt(2, supplierID);
+            ps.setInt(3, productID);
+
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        //Increasing the available quantity in Supplier_Prduct table
+        p.adjustQuantity("Increase", quantity, supplierID, productID);
+    }
+    
+    public void emptyShoppingCart(){
+        ResultSet rs = null;
+        int quantity, supplierID, productID;
+        java.sql.Connection conn = new DBConnector().connect();
+        
+        try{
+            //Get details for all the products in the customer's cart
+            String sql= "SELECT supplier_id, product_id, quantity FROM ShoppingCartItem WHERE  user_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+
+            rs = ps.executeQuery();
+            //Removing each item from the cart of the customer
+            while(rs.next()){
+
+                supplierID = rs.getInt(1);
+                productID = rs.getInt(2);
+                quantity = rs.getInt(3);
+                
+                
+                removeFromCart(productID, supplierID, quantity);
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        
     }
 }
