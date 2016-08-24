@@ -5,12 +5,22 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
+import CoreClasses.Order;
+import CoreClasses.ShoppingCart;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abdullah
  */
 public class Checkout extends javax.swing.JFrame {
-
+    ShoppingCart sc = new ShoppingCart();
+    Customer c = new Customer();
+    Order o  = new Order();
+    DefaultListModel<String> listModel;
     /**
      * Creates new form Checkout
      */
@@ -31,6 +41,29 @@ public class Checkout extends javax.swing.JFrame {
         
         panelBottomRight.repaint();
         panelBottomRight.revalidate();
+    }
+    
+    public void populateList(){
+       
+       listModel = new DefaultListModel<String>();
+       ArrayList<String> tempItems = new ArrayList<>();
+       tempItems = sc.getCheckoutList();
+       
+       for(int i=0;i<tempItems.size() - 1;i++){
+           listModel.addElement((String) tempItems.toArray()[i]);
+       }
+       
+       lstOrderSummary.setModel(listModel);
+       txtGrossTotal.setText(tempItems.toArray()[tempItems.size()-1]+"");
+    }
+    
+    public void showPersonalDetails(){
+        String[] tempArr = new String[3];
+        tempArr = c.getPersonalDetails();
+        
+        txtName.setText(tempArr[0]);
+        txtContact.setText(tempArr[1]);
+        txtEmail.setText(tempArr[2]);
     }
 
     /**
@@ -88,7 +121,7 @@ public class Checkout extends javax.swing.JFrame {
         btnCheckout = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -102,7 +135,7 @@ public class Checkout extends javax.swing.JFrame {
         panelTop.setOpaque(false);
 
         lstOrderSummary.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Loading..." };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -169,18 +202,30 @@ public class Checkout extends javax.swing.JFrame {
 
         jLabel2.setText("Name");
 
+        txtName.setEditable(false);
+
+        txtContact.setEditable(false);
+
         jLabel6.setText("Contact");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Payment Information");
 
-        jLabel9.setText("Gross Total");
+        jLabel9.setText("Gross Total (Rs.)");
+
+        txtGrossTotal.setEditable(false);
 
         jLabel7.setText("Email");
 
-        jLabel10.setText("Tax");
+        txtEmail.setEditable(false);
 
-        jLabel11.setText("Net Total");
+        jLabel10.setText("Tax (%)");
+
+        txtTax.setEditable(false);
+
+        jLabel11.setText("Net Total (Rs.)");
+
+        txtNetTotal.setEditable(false);
 
         javax.swing.GroupLayout panelBottomLeftLayout = new javax.swing.GroupLayout(panelBottomLeft);
         panelBottomLeft.setLayout(panelBottomLeftLayout);
@@ -196,7 +241,7 @@ public class Checkout extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(45, 45, 45)
+                        .addGap(72, 72, 72)
                         .addGroup(panelBottomLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtContact, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(txtEmail)
@@ -211,7 +256,7 @@ public class Checkout extends javax.swing.JFrame {
                             .addComponent(txtNetTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                             .addComponent(txtTax)
                             .addComponent(txtGrossTotal))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         panelBottomLeftLayout.setVerticalGroup(
             panelBottomLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +342,7 @@ public class Checkout extends javax.swing.JFrame {
                                 .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRedeem)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         panelDeliveryLayout.setVerticalGroup(
             panelDeliveryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +397,7 @@ public class Checkout extends javax.swing.JFrame {
                         .addComponent(txtVoucherCode1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRedeem1)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         panelPickupLayout.setVerticalGroup(
             panelPickupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +430,11 @@ public class Checkout extends javax.swing.JFrame {
         );
 
         btnCheckout.setText("Checkout");
+        btnCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckoutActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
 
@@ -450,7 +500,35 @@ public class Checkout extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        checkDeliveryMode();
+       populateList();
+       showPersonalDetails();
+       double grossTotal, netTotal, tax;
+       tax = 11.0;
+       grossTotal = Double.parseDouble(txtGrossTotal.getText());
+       netTotal = ((100.0+tax)/100.0)*grossTotal;
+       txtTax.setText(""+tax);
+       txtNetTotal.setText(""+netTotal);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
+        
+        
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to place the order ?", "Order Confirmation", JOptionPane.YES_NO_OPTION);
+        if(choice == 0){
+            double grossTotal = Double.parseDouble(txtGrossTotal.getText());
+            double netTotal = Double.parseDouble(txtNetTotal.getText());
+            double tax = Double.parseDouble(txtTax.getText());
+            String orderType = "Online";
+            String deliveryMode = cmbDeliveryMethod.getSelectedItem().toString();
+            String street = txtStreet.getText();
+            String city = txtCity.getText();
+            String postCode = txtPostCode.getText();
+            o.placeOrder(grossTotal, netTotal, tax, orderType, deliveryMode, street, city, postCode);
+            JOptionPane.showMessageDialog(null, "Your order has been placed.\n Thank you for your business!", "Order Confirmed", JOptionPane.INFORMATION_MESSAGE);
+            sc.checkoutCart();
+            dispose();
+        }
+    }//GEN-LAST:event_btnCheckoutActionPerformed
 
     /**
      * @param args the command line arguments
