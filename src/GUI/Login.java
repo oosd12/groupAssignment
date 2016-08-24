@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import CoreClasses.Admin;
 import CoreClasses.Customer;
 import CoreClasses.DBConnector;
 import CoreClasses.User;
@@ -186,6 +187,17 @@ public class Login extends javax.swing.JFrame {
             
             MainWindow m = new MainWindow(loginStatus);
             m.setVisible(true);
+        }
+        else if(loginStatus == 2){
+            Admin.setCurrentAdmin(txtEmail.getText());
+            JOptionPane.showMessageDialog(null, "Logged in successfully !", "Login Success", JOptionPane.INFORMATION_MESSAGE);
+
+            java.awt.Window win[] = MainWindow.getWindows();
+            for(int i=0;i<win.length;i++){
+                win[i].dispose();
+            }
+            
+            new AdminDashboard().setVisible(true);
         }
         System.out.println("status : "+loginStatus);
     }//GEN-LAST:event_btnLoginActionPerformed
