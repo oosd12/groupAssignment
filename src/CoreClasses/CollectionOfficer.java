@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class CollectionOfficer extends Officer{
-    
+        java.sql.Connection conn = new DBConnector().connect();
         public ResultSet displayCollection(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT *" +
                         "FROM Order_Product op" +
@@ -33,7 +33,7 @@ public class CollectionOfficer extends Officer{
     }
         public ResultSet getrecord(){
            ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT *" +
                         "FROM Order_Product op";
