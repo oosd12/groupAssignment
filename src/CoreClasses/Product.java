@@ -7,6 +7,7 @@ package CoreClasses;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -208,6 +209,75 @@ public class Product {
         
         return rs;
 
+    }
+    
+    
+    public ResultSet searchAdminProducts(String keyword){
+        ResultSet rs = null;
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT  * FROM Product WHERE name LIKE ? " ;
+                        
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "%"+keyword+"%");
+            
+            rs = ps.executeQuery();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return rs;
+    }
+    
+    public ArrayList getAllProductID(){
+        ResultSet rs = null;
+        ArrayList<String> idList = new ArrayList<>();
+        
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT  product_id FROM Product " ;
+                        
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                rs.getString(1);
+                idList.add(rs.getString(1));
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return idList;
+    }
+    
+    public String getProductName(int productID){
+        ResultSet rs = null;
+        String prodName = "";
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT name FROM Product WHERE product_id = ? " ;
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+               prodName = rs.getString(1);
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return prodName;
     }
 }
 

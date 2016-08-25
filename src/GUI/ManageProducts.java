@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Product;
+import CoreClasses.Supplier;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +20,7 @@ import net.proteanit.sql.DbUtils;
  * @author Sanduni
  */
 public class ManageProducts extends javax.swing.JFrame {
-
+    Product p = new Product();
     /**
      * Creates new form ManageProducts
      */
@@ -62,23 +63,23 @@ public class ManageProducts extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         panelModify = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        txtProductID1 = new javax.swing.JTextField();
-        txtName1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmbCategory2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblModify = new javax.swing.JTable();
-        jLabel20 = new javax.swing.JLabel();
-        txtImageLink2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        txtProductID1 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        cmbCategory2 = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        txtName1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        txtImageLink2 = new javax.swing.JTextField();
         panelQuantity = new javax.swing.JPanel();
         txtfieldDate = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -163,7 +164,7 @@ public class ManageProducts extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                            .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelAddLayout.createSequentialGroup()
                         .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -172,11 +173,11 @@ public class ManageProducts extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(29, 29, 29)
-                        .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtImageLink)
-                            .addComponent(cmbCategory, 0, 195, Short.MAX_VALUE)
-                            .addComponent(txtName)
-                            .addComponent(txtProductID))))
+                        .addGroup(panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtImageLink, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         panelAddLayout.setVerticalGroup(
@@ -210,22 +211,16 @@ public class ManageProducts extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jLabel9.setText("Category");
-
-        txtProductID1.setEditable(false);
-        txtProductID1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductID1ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Modify product");
-
-        cmbCategory2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beverages", "Canned Goods", "Dairy", "Frozen Foods", "Fruits", "Meat", "Vegetables" }));
 
         jLabel6.setText("Search");
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         tblModify.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -245,18 +240,6 @@ public class ManageProducts extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblModify);
 
-        jLabel20.setText("Image Link");
-
-        txtImageLink2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImageLink2ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Product ID");
-
-        jLabel8.setText("Name");
-
         lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setText("Save");
@@ -267,6 +250,18 @@ public class ManageProducts extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel19.setText("Product ID");
+
+        txtProductID1.setEditable(false);
+
+        jLabel21.setText("Name");
+
+        cmbCategory2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beverages", "Canned Goods", "Dairy", "Frozen Foods", "Fruits", "Meat", "Vegetables" }));
+
+        jLabel22.setText("Category");
+
+        jLabel23.setText("Image Link");
 
         javax.swing.GroupLayout panelModifyLayout = new javax.swing.GroupLayout(panelModify);
         panelModify.setLayout(panelModifyLayout);
@@ -280,36 +275,31 @@ public class ManageProducts extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelModifyLayout.createSequentialGroup()
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                            .addGroup(panelModifyLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelModifyLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelModifyLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel23))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(panelModifyLayout.createSequentialGroup()
-                                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel7))
-                                .addGap(27, 27, 27)
-                                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtName1)
-                                    .addComponent(txtProductID1)
-                                    .addComponent(cmbCategory2, 0, 273, Short.MAX_VALUE)
-                                    .addComponent(txtImageLink2))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                    .addComponent(txtProductID1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbCategory2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtImageLink2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelModifyLayout.setVerticalGroup(
             panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,30 +313,30 @@ public class ManageProducts extends javax.swing.JFrame {
                     .addComponent(btnSearch))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(jLabel19)
                     .addComponent(txtProductID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbCategory2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel21)
+                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(txtImageLink2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel22)
+                    .addComponent(cmbCategory2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelModifyLayout.createSequentialGroup()
+                    .addComponent(jLabel23)
+                    .addComponent(txtImageLink2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelModifyLayout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         txtfieldDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/MM/yyyy"))));
@@ -357,11 +347,15 @@ public class ManageProducts extends javax.swing.JFrame {
 
         jLabel12.setText("Product ID");
 
+        txtProductName.setEditable(false);
+
         jLabel13.setText("Suppier ID");
 
         jLabel18.setText("Supplier Name");
 
         jLabel14.setText("Quantity");
+
+        txtSupplierName.setEditable(false);
 
         jLabel15.setText("Production Date");
 
@@ -370,6 +364,22 @@ public class ManageProducts extends javax.swing.JFrame {
         btnSave1.setText("Save");
 
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProductID2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbProductID2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbProductID2MouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cmbProductID2MousePressed(evt);
+            }
+        });
+        cmbProductID2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductID2ActionPerformed(evt);
+            }
+        });
 
         btnCancel2.setText("Cancel");
 
@@ -498,7 +508,7 @@ public class ManageProducts extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(lblManageProduct)
                 .addGap(18, 18, 18)
                 .addComponent(panelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -508,9 +518,14 @@ public class ManageProducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       Product p = new Product();
+       
        tblModify.setModel(DbUtils.resultSetToTableModel(p.getAllProducts()));
         adjustColumns();
+        
+         
+        //Display all product IDs
+        cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void txtProductIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductIDActionPerformed
@@ -520,61 +535,6 @@ public class ManageProducts extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void txtProductID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductID1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductID1ActionPerformed
-
-    private void txtImageLink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImageLink2ActionPerformed
-        //Getting the image for the product and loading it into the label
-       
-    }//GEN-LAST:event_txtImageLink2ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void tblModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblModifyMouseClicked
-        int row = tblModify.getSelectedRow(); // the row which is selceted
-        txtProductID1.setText((tblModify.getModel().getValueAt(row,0).toString()));
-        txtName1.setText((tblModify.getModel().getValueAt(row,1).toString()));
-        txtImageLink2.setText((tblModify.getModel().getValueAt(row,3).toString()));
-        
-        String Category=tblModify.getModel().getValueAt(row,2).toString();
-        if(Category.equals("Beverages")){
-            cmbCategory2.setSelectedIndex(0);
-        }  
-        if(Category.equals("Canned Goods")){
-            cmbCategory2.setSelectedIndex(1);
-        }   
-        if(Category.equals("Dairy")){
-            cmbCategory2.setSelectedIndex(2);
-        }    
-        if(Category.equals("Frozen Foods")){
-            cmbCategory2.setSelectedIndex(3);    
-        }   
-        if(Category.equals("Fruits")){
-            cmbCategory2.setSelectedIndex(4);
-        }    
-        if(Category.equals("Meat")){
-            cmbCategory2.setSelectedIndex(5);   
-        }    
-        if(Category.equals("Vegetables")){
-            cmbCategory2.setSelectedIndex(6);  
-        }
-        
-        Image image = null;
-        try {
-            URL url = new URL(""+txtImageLink2.getText());
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-            System.out.println("Error "+ e);
-        }
-        Image scaledInstance = image.getScaledInstance(193, 162, Image.SCALE_DEFAULT);
-        ImageIcon icon = new ImageIcon(scaledInstance); 
-        lblImage.setIcon(icon);
-        
-    }//GEN-LAST:event_tblModifyMouseClicked
 
     private void txtImageLinkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImageLinkKeyPressed
         // TODO add your handling code here:
@@ -592,6 +552,72 @@ public class ManageProducts extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(scaledInstance); 
         lblImage1.setIcon(icon);
     }//GEN-LAST:event_txtImageLinkKeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tblModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblModifyMouseClicked
+        int row = tblModify.getSelectedRow(); // the row which is selceted
+        txtProductID1.setText((tblModify.getModel().getValueAt(row,0).toString()));
+        txtName1.setText((tblModify.getModel().getValueAt(row,1).toString()));
+        txtImageLink2.setText((tblModify.getModel().getValueAt(row,3).toString()));
+
+        String Category=tblModify.getModel().getValueAt(row,2).toString();
+        if(Category.equals("Beverages")){
+            cmbCategory2.setSelectedIndex(0);
+        }
+        if(Category.equals("Canned Goods")){
+            cmbCategory2.setSelectedIndex(1);
+        }
+        if(Category.equals("Dairy")){
+            cmbCategory2.setSelectedIndex(2);
+        }
+        if(Category.equals("Frozen Foods")){
+            cmbCategory2.setSelectedIndex(3);
+        }
+        if(Category.equals("Fruits")){
+            cmbCategory2.setSelectedIndex(4);
+        }
+        if(Category.equals("Meat")){
+            cmbCategory2.setSelectedIndex(5);
+        }
+        if(Category.equals("Vegetables")){
+            cmbCategory2.setSelectedIndex(6);
+        }
+
+        Image image = null;
+        try {
+            URL url = new URL(""+txtImageLink2.getText());
+            image = ImageIO.read(url);
+        } catch (IOException e) {
+            System.out.println("Error "+ e);
+        }
+        Image scaledInstance = image.getScaledInstance(193, 162, Image.SCALE_DEFAULT);
+        ImageIcon icon = new ImageIcon(scaledInstance);
+        lblImage.setIcon(icon);
+    }//GEN-LAST:event_tblModifyMouseClicked
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        tblModify.setModel(DbUtils.resultSetToTableModel(p.searchAdminProducts(txtSearch.getText())));
+        adjustColumns();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cmbProductID2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProductID2MousePressed
+
+    private void cmbProductID2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MouseEntered
+    }//GEN-LAST:event_cmbProductID2MouseEntered
+
+    private void cmbProductID2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MouseClicked
+
+    }//GEN-LAST:event_cmbProductID2MouseClicked
+
+    private void cmbProductID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductID2ActionPerformed
+                txtProductName.setText(p.getProductName(Integer.parseInt(cmbProductID2.getSelectedItem().toString())));
+
+    }//GEN-LAST:event_cmbProductID2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -650,15 +676,15 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblImage1;
