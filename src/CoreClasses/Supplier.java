@@ -16,11 +16,12 @@ import javax.swing.JOptionPane;
  */
 public class Supplier {
     private ArrayList<String> supplierLocations = new ArrayList<String>();
+    java.sql.Connection conn = new DBConnector().connect();
     
     public ArrayList getAllSupplierLocations(){
         supplierLocations.add("All Locations");
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT city FROM Supplier";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -42,8 +43,6 @@ public class Supplier {
     public ArrayList getAllSupplierID(){
         ResultSet rs = null;
         ArrayList<String> idList = new ArrayList<>();
-        
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT  supplier_id FROM Supplier " ;
                         
@@ -67,7 +66,6 @@ public class Supplier {
     public String getSupplierName(int supplierID){
         ResultSet rs = null;
         String supName = "";
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT name FROM Supplier WHERE supplier_id = ? " ;
 
