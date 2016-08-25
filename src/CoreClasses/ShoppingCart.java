@@ -20,6 +20,8 @@ public class ShoppingCart {
     Product p = new Product();
     
     java.sql.Connection conn = new DBConnector().connect();
+    
+    
     public void addToCart(int productID, int supplierID, int quantity){
         
         try{
