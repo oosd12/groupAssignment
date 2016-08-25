@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class DeliveryOfficer extends Officer{
-    
+    java.sql.Connection conn = new DBConnector().connect();
     public ResultSet displayDelivery(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT *" +
                         "FROM Order_Product op" +
