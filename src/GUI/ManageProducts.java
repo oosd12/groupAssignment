@@ -97,7 +97,6 @@ public class ManageProducts extends javax.swing.JFrame {
         spnQuantity = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 255, 102));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -107,7 +106,6 @@ public class ManageProducts extends javax.swing.JFrame {
         lblManageProduct.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblManageProduct.setText("Manage Products");
 
-        panelContainer.setBackground(new java.awt.Color(51, 51, 255));
         panelContainer.setOpaque(false);
 
         panelAdd.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Product"));
