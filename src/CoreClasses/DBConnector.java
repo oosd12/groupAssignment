@@ -15,7 +15,13 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class DBConnector {
-    private Connection DBConnection;
+    private static Connection DBConnection;
+
+    public static Connection getDBConnection() {
+        return DBConnection;
+    }
+    
+    
     public Connection connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
