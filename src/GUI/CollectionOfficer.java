@@ -17,7 +17,9 @@ public class CollectionOfficer extends javax.swing.JFrame {
     public CollectionOfficer() {
         initComponents();
     }
-
+        String ProductName,SupplierName,SupplierAddress;
+        Double Quantity;
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +53,11 @@ public class CollectionOfficer extends javax.swing.JFrame {
         btnCollected.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnCollected.setText("Collected");
         btnCollected.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCollected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCollectedActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnLogOut.setText("LogOut");
@@ -186,6 +193,10 @@ public class CollectionOfficer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCollectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCollectedActionPerformed
 
     /**
      * @param args the command line arguments
