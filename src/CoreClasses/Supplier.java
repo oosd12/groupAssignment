@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Supplier {
     private ArrayList<String> supplierLocations = new ArrayList<String>();
-    java.sql.Connection conn = new DBConnector().connect();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     public ArrayList getAllSupplierLocations(){
         supplierLocations.add("All Locations");
