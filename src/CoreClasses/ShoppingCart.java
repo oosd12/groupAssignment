@@ -19,8 +19,9 @@ public class ShoppingCart {
     Customer c  = new Customer();
     Product p = new Product();
     
+    java.sql.Connection conn = new DBConnector().connect();
     public void addToCart(int productID, int supplierID, int quantity){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "INSERT INTO ShoppingCartItem (user_id, supplier_id, product_id, quantity) VALUES (?, ?, ?, ?) ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -42,7 +43,7 @@ public class ShoppingCart {
     
     public ResultSet getCartItems(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT sci.product_id, sci.supplier_id, p.name,s.name, sci.quantity, sp.production_date, sp.price, (sci.quantity * sp.price) AS NewColumn " +
                         "FROM ShoppingCartItem sci " +
@@ -62,7 +63,7 @@ public class ShoppingCart {
     }
     
     public void removeFromCart(int productID, int supplierID, int quantity){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "DELETE FROM ShoppingCartItem WHERE  user_id = ? AND supplier_id = ? AND product_id = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -84,7 +85,7 @@ public class ShoppingCart {
     public void emptyShoppingCart(){
         ResultSet rs = null;
         int quantity, supplierID, productID;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         
         try{
             //Get details for all the products in the customer's cart
@@ -118,7 +119,7 @@ public class ShoppingCart {
         ResultSet rs = null;
         ArrayList<String> details = new ArrayList<>();
         double total = 0;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT sci.quantity, p.name, sp.price, (sci.quantity * sp.price) AS NewColumn " +
                         "FROM ShoppingCartItem sci " +
@@ -145,17 +146,38 @@ public class ShoppingCart {
     }
     
     public void checkoutCart(){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "DELETE FROM ShoppingCartItem WHERE  user_id = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, c.getCurrentCustomerID());
-            ps.executeUpdate();
+            ps.executeQuery();
 
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
+    }
+    
+    public int getNoItemsInCart(){
+        
+        ResultSet rs = null;
+        int count = 0;
+        try{
+            String sql= "SELECT COUNT(*) FROM ShoppingCartItem WHERE  user_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, c.getCurrentCustomerID());
+            rs = ps.executeQuery();
+            while(rs.next()){
+                count = rs.getInt(1);
+
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return count;
     }
     
 }
