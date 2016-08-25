@@ -674,6 +674,15 @@ public class MainWindow extends javax.swing.JFrame {
         //Display all supplier locations (cities)
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
        
+        //Display No. Items in cart
+        if(Customer.getCurrentCustomer() != null){
+            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        }
+        else if(!(Customer.getCurrentCustomer().equals(""))){
+            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        }
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -754,6 +763,16 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         refreshTable();
+        
+        //Display No. Items in cart
+        if(Customer.getCurrentCustomer() != null){
+            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        }
+        else if(!(Customer.getCurrentCustomer().equals(""))){
+            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
