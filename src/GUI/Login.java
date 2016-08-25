@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    Customer c = new Customer();
+    
     /**
      * Creates new form login
      */
@@ -26,39 +28,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public int login(String email, String password){
-        ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
-        try{
-            String sql= "SELECT user_type FROM User WHERE email = ? AND password = ? ";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, ""+email);
-            ps.setString(2, ""+password);
-            rs = ps.executeQuery();
-            
-            while(rs.next()){
-                switch (rs.getString(1)) {
-                    case "Customer":
-                        return 1;
-                    case "Administrator":
-                        return 2;
-                    case "Delivery Officer":
-                        return 3;
-                    case "Collection Officer":
-                        return 4;
-                    default:
-                        return 0;
-                }
-            }
-           
-            
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-
-        return -1;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,7 +141,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        int loginStatus = login(txtEmail.getText(), pwdPassword.getText());
+        int loginStatus = c.login(txtEmail.getText(), pwdPassword.getText());
+
         if(loginStatus == 0){
             JOptionPane.showMessageDialog(null, "Invalid email or password, please try again", "Login Failure", JOptionPane.ERROR_MESSAGE);
         }
