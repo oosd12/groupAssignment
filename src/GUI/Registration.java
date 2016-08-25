@@ -233,7 +233,7 @@ public class Registration extends javax.swing.JFrame {
             MsgRegister.showMessageDialog(this, "Customer is already in the system");
         }
         else {
-            c1.insertUser(UserID, Name, Email, Street, City, Postcode, ContactNo, Password);
+            c1.insertUser(UserID, Name, Email,ContactNo, Password);
             MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
             }
         
