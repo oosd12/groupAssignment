@@ -229,10 +229,9 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        
         dispose();
         MainWindow m1 = new MainWindow();
-       m1.setVisible(true);
+        m1.setVisible(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
