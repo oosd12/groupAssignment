@@ -58,27 +58,7 @@ public class Customer extends User{
         }
         return flag;
     }
-    
-    public String placeUserID(){
-        ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
-        try{
-            String sql= "SELECT user_id FROM User WHERE user_id = ?  ";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, ""+placeUserID());
-            rs = ps.executeQuery();
-            if(rs.next()){
-                return rs.getString(1);
-            }
- 
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-
-        return "user_id";
-    }
-    
+   
     public String getCurrentCustomerName(){
         ResultSet rs = null;
         java.sql.Connection conn = new DBConnector().connect();
