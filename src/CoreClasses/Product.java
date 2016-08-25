@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class Product {
-    java.sql.Connection conn = new DBConnector().connect();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     public ResultSet getAvailableProducts(){
         ResultSet rs = null;
         
