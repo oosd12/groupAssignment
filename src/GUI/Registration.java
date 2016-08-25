@@ -211,7 +211,8 @@ public class Registration extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         Customer c1 = new Customer();
         
-        String UserID;
+        String UserID =c1.placeUserID();
+        txtUserID.setText(UserID);
         String Name = txtName.getText();
         String Email = txtEmail.getText();
         String ContactNo = txtContactno.getText();
