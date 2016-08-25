@@ -214,9 +214,6 @@ public class Registration extends javax.swing.JFrame {
         
         txtName.setText("");
         txtEmail.setText("");
-        txtStreet.setText("");
-        txtCity.setText("");
-        txtPostcode.setText("");
         txtContactno.setText("");
         txtPassword.setText("");
            
@@ -227,9 +224,6 @@ public class Registration extends javax.swing.JFrame {
         String UserID = txtUserID.getText();
         String Name = txtName.getText();
         String Email = txtEmail.getText();
-        String Street = txtStreet.getText();
-        String City = txtCity.getText();
-        String Postcode = txtPostcode.getText();
         String ContactNo = txtContactno.getText();
         String Password = txtPassword.getText();
         
