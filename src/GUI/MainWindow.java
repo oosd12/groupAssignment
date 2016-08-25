@@ -29,61 +29,61 @@ import net.proteanit.sql.DbUtils;
  * @author Abdullah
  */
 public class MainWindow extends javax.swing.JFrame {
-    int productID,supplierID,quantity;
-    
+
+    int productID, supplierID, quantity;
+
     //Make initial connection to DB
     java.sql.Connection conn = new DBConnector().connect();
-    
-    Product p = new Product();    
+
+    Product p = new Product();
     Customer c = new Customer();
     ShoppingCart sc = new ShoppingCart();
-    
-   
+
     /**
      * Creates new form MainWindow3
      */
     public MainWindow() {
         //look & feel
         initComponents();
-        String s; 
-        s= "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
-         
+        String s;
+        s = "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
+
         try {
             javax.swing.UIManager.setLookAndFeel(s);
             SwingUtilities.updateComponentTreeUI(this);
-          
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
         }
-        
+
         //Showing logged out controls only
         panelAccountControls.removeAll();
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
-        
+
         panelAccountControls.add(panelNotLoggedIn);
-        
+
         panelAccountControls.repaint();
         panelAccountControls.revalidate();
     }
-    
+
     public MainWindow(int userType) {
         //Setting look and feel
         initComponents();
-        String s; 
-        s= "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
-         
+        String s;
+        s = "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
+
         try {
             javax.swing.UIManager.setLookAndFeel(s);
             SwingUtilities.updateComponentTreeUI(this);
-          
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
         }
-        
-        if(userType == 1){
+
+        if (userType == 1) {
             //Showing customer controls 
             panelAccountControls.removeAll();
             panelAccountControls.repaint();
@@ -93,34 +93,31 @@ public class MainWindow extends javax.swing.JFrame {
 
             panelAccountControls.repaint();
             panelAccountControls.revalidate();
-            
+
             //Showing greeting message
-            lblGreet1.setText("Hi "+c.getCurrentCustomerName()+", welcome back!");
+            lblGreet1.setText("Hi " + c.getCurrentCustomerName() + ", welcome back!");
         }
     }
-    
-    public void refreshTable(){
+
+    public void refreshTable() {
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAvailableProducts()));
         adjustColumns();
         txtProductName.setText("");
         txtSupplierName.setText("");
         txtPrice.setText("");
         ftxtProductionDate.setText("");
-        
-        
+
     }
-    
-    public void disableButton(){ 
-        if(txtProductName.getText().equals("")){
+
+    public void disableButton() {
+        if (txtProductName.getText().equals("")) {
             btnAddToCart.setEnabled(false);
-        }
-        else{
+        } else {
             btnAddToCart.setEnabled(true);
-        }        
+        }
     }
-    
-    
-    public void adjustColumns(){
+
+    public void adjustColumns() {
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
         tcm.removeColumn(tcm.getColumn(0));//removing supplier ID
@@ -132,13 +129,11 @@ public class MainWindow extends javax.swing.JFrame {
         tcm.getColumn(4).setHeaderValue("Price");
         tcm.getColumn(5).setHeaderValue("Category");
         tcm.getColumn(6).setHeaderValue("City");
-        
+
         //adjusting cell widths of the table
         tcm.getColumn(2).setMaxWidth(70);
         tcm.getColumn(4).setMaxWidth(70);
     }
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -430,6 +425,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        lblProductImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProductImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/camIcon.png"))); // NOI18N
         lblProductImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel8.setBackground(java.awt.SystemColor.controlHighlight);
@@ -456,11 +453,11 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(30, 30, 30)
                         .addGroup(panelProductInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSupplierName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ftxtProductionDate, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spnQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(ftxtProductionDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnQuantity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblProductImage, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -648,8 +645,7 @@ public class MainWindow extends javax.swing.JFrame {
         String filter = cmbFilter.getSelectedItem().toString();
         String sort = cmbSort.getSelectedItem().toString();
         String location = cmbLocation.getSelectedItem().toString();
-        
-       
+
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.searchForProducts(keyword, filter, sort, location)));
         adjustColumns();
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -677,22 +673,21 @@ public class MainWindow extends javax.swing.JFrame {
         Supplier s = new Supplier();
         //Display all supplier locations (cities)
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
-       
+
         //Display No. Items in cart
-        if(Customer.getCurrentCustomer() != null){
-            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
-            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        if (Customer.getCurrentCustomer() != null) {
+            lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
+        } else if (!(Customer.getCurrentCustomer().equals(""))) {
+            lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
         }
-        else if(!(Customer.getCurrentCustomer().equals(""))){
-            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
-            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
-        }
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-       Login l = new Login();
-       l.setVisible(true);
+        Login l = new Login();
+        l.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -713,13 +708,13 @@ public class MainWindow extends javax.swing.JFrame {
         sc.emptyShoppingCart();
         Customer.setCurrentCustomer("");
         JOptionPane.showMessageDialog(this, "Logged out successfully", "Logout Successful", JOptionPane.INFORMATION_MESSAGE);
-        
+
         //Closing all open windows
         java.awt.Window win[] = java.awt.Window.getWindows();
-        for(int i=0;i<win.length;i++){
+        for (int i = 0; i < win.length; i++) {
             win[i].dispose();
         }
-        
+
         new MainWindow().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -733,66 +728,61 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked
         int row = tblProducts.getSelectedRow();
-        this.productID = Integer.parseInt((tblProducts.getModel().getValueAt(row,0).toString()));
-        this.supplierID = Integer.parseInt((tblProducts.getModel().getValueAt(row,1).toString()));
-        
-        txtProductName.setText((tblProducts.getModel().getValueAt(row,2).toString()));
-        txtSupplierName.setText((tblProducts.getModel().getValueAt(row,3).toString()));
-        txtPrice.setText((tblProducts.getModel().getValueAt(row,6).toString()));
-        ftxtProductionDate.setText((tblProducts.getModel().getValueAt(row,5).toString()));
-        
-        
+        this.productID = Integer.parseInt((tblProducts.getModel().getValueAt(row, 0).toString()));
+        this.supplierID = Integer.parseInt((tblProducts.getModel().getValueAt(row, 1).toString()));
+
+        txtProductName.setText((tblProducts.getModel().getValueAt(row, 2).toString()));
+        txtSupplierName.setText((tblProducts.getModel().getValueAt(row, 3).toString()));
+        txtPrice.setText((tblProducts.getModel().getValueAt(row, 6).toString()));
+        ftxtProductionDate.setText((tblProducts.getModel().getValueAt(row, 5).toString()));
+
         //Getting the image for the product and loading it into the label
-        String image_link = tblProducts.getModel().getValueAt(row,8).toString();
+        String image_link = tblProducts.getModel().getValueAt(row, 8).toString();
         Image image = null;
         try {
-            URL url = new URL(""+image_link);
+            URL url = new URL("" + image_link);
             image = ImageIO.read(url);
         } catch (IOException e) {
-            System.out.println("Error "+ e);
+            System.out.println("Error " + e);
         }
         Image scaledInstance = image.getScaledInstance(193, 162, Image.SCALE_DEFAULT);
-        ImageIcon icon = new ImageIcon(scaledInstance); 
+        ImageIcon icon = new ImageIcon(scaledInstance);
         lblProductImage.setIcon(icon);
-        
-        
+
         //Setting the spinner maximum
-        int maxQuantity = Integer.parseInt((tblProducts.getModel().getValueAt(row,4).toString()));
+        int maxQuantity = Integer.parseInt((tblProducts.getModel().getValueAt(row, 4).toString()));
         SpinnerNumberModel model = new SpinnerNumberModel(1, 1, maxQuantity, 1);
         spnQuantity.setModel(model);
-        
+
         disableButton();
-       
+
     }//GEN-LAST:event_tblProductsMouseClicked
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         refreshTable();
-        
+
         //Display No. Items in cart
-        if(Customer.getCurrentCustomer() != null){
-            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
-            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
-        }
-        else if(!(Customer.getCurrentCustomer().equals(""))){
-            lblItems.setText("Items in Cart : "+sc.getNoItemsInCart());
-            lblItems1.setText("Items in Cart : "+sc.getNoItemsInCart());
+        if (Customer.getCurrentCustomer() != null) {
+            lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
+        } else if (!(Customer.getCurrentCustomer().equals(""))) {
+            lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
+            lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
         //if order customer is not logged in or phone order is not being placed do not add to cart
-        if(Customer.getCurrentCustomer() == null){
+        if (Customer.getCurrentCustomer() == null) {
             JOptionPane.showMessageDialog(this, "You are not logged in, cannot add to cart.\n Please register and login to add items to your shopping cart", "Please Login", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(Customer.getCurrentCustomer().equals("")){
+        } else if (Customer.getCurrentCustomer().equals("")) {
             JOptionPane.showMessageDialog(this, "You are not logged in, cannot add to cart.\n Please register and login to add items to your shopping cart", "Please Login", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        } else {
             sc.addToCart(this.productID, this.supplierID, (int) spnQuantity.getValue());
-            JOptionPane.showMessageDialog(null, spnQuantity.getValue()+" "+txtProductName.getText()+" added to shopping cart", "Added to cart", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, spnQuantity.getValue() + " " + txtProductName.getText() + " added to shopping cart", "Added to cart", JOptionPane.INFORMATION_MESSAGE);
             refreshTable();
         }
-        
+
 //JOptionPane.showMessageDialog(null, ""+Customer.getCurrentCustomer(), "Added to cart", JOptionPane.INFORMATION_MESSAGE);
         disableButton();
     }//GEN-LAST:event_btnAddToCartActionPerformed
