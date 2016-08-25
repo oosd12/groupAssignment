@@ -21,9 +21,10 @@ import javax.swing.JOptionPane;
 public class Order {
     int orderID;
     Customer c = new Customer();
+    java.sql.Connection conn = new DBConnector().connect();
     
     public void placeOrder(double grossTotal, double netTotal,double tax, String orderType, String deliveryMode, String street, String city, String postCode){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         ResultSet rs = null;
         try{
             String sql= "INSERT INTO `sql6131484`.`Order` ( order_date, gross_total, tax, net_total, order_type, deliveryMode, user_id) VALUES ( ?, ?, ?, ?, ?, ?, ? ); ";
@@ -59,7 +60,6 @@ public class Order {
     
     public void addToOrderProduct(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         //Get all items from shopping cart and add each item to order_product table
         try{
             String sql= "SELECT  supplier_id, product_id, quantity " +
