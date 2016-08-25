@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class Product {
-    
+    java.sql.Connection conn = new DBConnector().connect();
     public ResultSet getAvailableProducts(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link, s.city " +
                         "FROM Supplier_Product sp " +
@@ -66,7 +66,6 @@ public class Product {
         
         
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link, s.city " +
                         "FROM Supplier_Product sp " +
@@ -93,7 +92,6 @@ public class Product {
     }
     public ResultSet getAllProducts(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT * FROM Product";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -109,8 +107,6 @@ public class Product {
     }
     
     public void adjustQuantity(String operation, int quantity, int supplierID, int productID){
-       
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql = "";
             if(operation.equals("Increase")){
@@ -137,7 +133,6 @@ public class Product {
     //For use on admin dashboard products table
     public ResultSet getAllSupplies(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
                         "FROM Supplier_Product sp " +
@@ -186,7 +181,6 @@ public class Product {
         
         
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
                         "FROM Supplier_Product sp " +
@@ -214,7 +208,6 @@ public class Product {
     
     public ResultSet searchAdminProducts(String keyword){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT  * FROM Product WHERE name LIKE ? " ;
                         
@@ -235,8 +228,7 @@ public class Product {
     public ArrayList getAllProductID(){
         ResultSet rs = null;
         ArrayList<String> idList = new ArrayList<>();
-        
-        java.sql.Connection conn = new DBConnector().connect();
+       
         try{
             String sql= "SELECT  product_id FROM Product " ;
                         
@@ -261,7 +253,6 @@ public class Product {
     public String getProductName(int productID){
         ResultSet rs = null;
         String prodName = "";
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT name FROM Product WHERE product_id = ? " ;
 
