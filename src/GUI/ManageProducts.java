@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Product;
+import CoreClasses.Supplier;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -346,11 +347,15 @@ public class ManageProducts extends javax.swing.JFrame {
 
         jLabel12.setText("Product ID");
 
+        txtProductName.setEditable(false);
+
         jLabel13.setText("Suppier ID");
 
         jLabel18.setText("Supplier Name");
 
         jLabel14.setText("Quantity");
+
+        txtSupplierName.setEditable(false);
 
         jLabel15.setText("Production Date");
 
@@ -359,6 +364,22 @@ public class ManageProducts extends javax.swing.JFrame {
         btnSave1.setText("Save");
 
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProductID2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbProductID2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbProductID2MouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cmbProductID2MousePressed(evt);
+            }
+        });
+        cmbProductID2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductID2ActionPerformed(evt);
+            }
+        });
 
         btnCancel2.setText("Cancel");
 
@@ -500,6 +521,11 @@ public class ManageProducts extends javax.swing.JFrame {
        
        tblModify.setModel(DbUtils.resultSetToTableModel(p.getAllProducts()));
         adjustColumns();
+        
+         
+        //Display all product IDs
+        cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
+       
     }//GEN-LAST:event_formWindowOpened
 
     private void txtProductIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductIDActionPerformed
@@ -576,6 +602,22 @@ public class ManageProducts extends javax.swing.JFrame {
         tblModify.setModel(DbUtils.resultSetToTableModel(p.searchAdminProducts(txtSearch.getText())));
         adjustColumns();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cmbProductID2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProductID2MousePressed
+
+    private void cmbProductID2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MouseEntered
+    }//GEN-LAST:event_cmbProductID2MouseEntered
+
+    private void cmbProductID2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbProductID2MouseClicked
+
+    }//GEN-LAST:event_cmbProductID2MouseClicked
+
+    private void cmbProductID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductID2ActionPerformed
+                txtProductName.setText(p.getProductName(Integer.parseInt(cmbProductID2.getSelectedItem().toString())));
+
+    }//GEN-LAST:event_cmbProductID2ActionPerformed
 
     /**
      * @param args the command line arguments
