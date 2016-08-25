@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class CollectionOfficer extends Officer{
-        java.sql.Connection conn = new DBConnector().connect();
+        java.sql.Connection conn = DBConnector.getDBConnection();
+        
         public ResultSet displayCollection(){
         ResultSet rs = null;
         
