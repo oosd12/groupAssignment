@@ -32,6 +32,7 @@ public class DBConnector {
         catch(SQLException se){
             System.out.println("Database Not Found " + se);
             JOptionPane.showMessageDialog(null, "Database connection failed, please check your internet connection", "Connection Failure", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         return DBConnection;
     }
