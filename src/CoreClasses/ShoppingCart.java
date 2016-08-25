@@ -19,7 +19,7 @@ public class ShoppingCart {
     Customer c  = new Customer();
     Product p = new Product();
     
-    java.sql.Connection conn = new DBConnector().connect();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     
     public void addToCart(int productID, int supplierID, int quantity){
