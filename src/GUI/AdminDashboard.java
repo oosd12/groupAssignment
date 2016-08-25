@@ -147,12 +147,22 @@ public class AdminDashboard extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         btnManageProducts.setText("Manage Products");
+        btnManageProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageProductsActionPerformed(evt);
+            }
+        });
 
         btnManageCustomers.setText("Manage Customers");
 
         btnManageSuppliers.setText("Manage Suppliers");
 
         btnPlacePhoneOrder.setText("Place Phone Order");
+        btnPlacePhoneOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlacePhoneOrderActionPerformed(evt);
+            }
+        });
 
         btnGenerateReports.setText("Generate Reports");
 
@@ -290,6 +300,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         
         new MainWindow().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnManageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProductsActionPerformed
+        new ManageProducts().setVisible(true);
+    }//GEN-LAST:event_btnManageProductsActionPerformed
+
+    private void btnPlacePhoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacePhoneOrderActionPerformed
+        new PlaceOrder().setVisible(true);
+    }//GEN-LAST:event_btnPlacePhoneOrderActionPerformed
 
     /**
      * @param args the command line arguments
