@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Delivery {
     Customer c = new Customer();
-    java.sql.Connection conn = new DBConnector().connect();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     public void addDeliveryAddress(String street, String city, String postCode, int orderID){
         
