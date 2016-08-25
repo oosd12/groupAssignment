@@ -42,10 +42,10 @@ public class Customer extends User{
         return flag;
     }
     
-    public boolean insertUser(String UserID,String Name,String Email,String Street,String City,String Postcode,String ContactNo,String Password){
+    public boolean insertUser(String UserID,String Name,String Email,String ContactNo,String Password){
         boolean flag = false;
         java.sql.Connection conn = new DBConnector().connect();
-        String sql = "Insert Into `User` u values ('"+UserID+"','"+Name+"','"+Email+"','"+Street+"','"+City+"','"+Postcode+"','"+ContactNo+"','"+Password+"')";
+        String sql = "Insert Into `User` u values ('"+UserID+"','"+Name+"','"+Email+"','"+ContactNo+"','"+Password+"')";
         
         try {
             stmt=conn.createStatement();
