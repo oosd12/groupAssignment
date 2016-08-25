@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Customer;
+import CoreClasses.DBConnector;
 import CoreClasses.Product;
 import CoreClasses.ShoppingCart;
 import CoreClasses.Supplier;
@@ -29,6 +30,9 @@ import net.proteanit.sql.DbUtils;
  */
 public class MainWindow extends javax.swing.JFrame {
     int productID,supplierID,quantity;
+    
+    //Make initial connection to DB
+    java.sql.Connection conn = new DBConnector().connect();
     
     Product p = new Product();    
     Customer c = new Customer();
