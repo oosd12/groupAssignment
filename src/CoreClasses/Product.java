@@ -257,6 +257,7 @@ public class Product {
         return idList;
     }
     
+    
     public String getProductName(int productID){
         ResultSet rs = null;
         String prodName = "";
