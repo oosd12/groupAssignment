@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class Order {
     int orderID;
     Customer c = new Customer();
-    java.sql.Connection conn = new DBConnector().connect();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     public void placeOrder(double grossTotal, double netTotal,double tax, String orderType, String deliveryMode, String street, String city, String postCode){
         
