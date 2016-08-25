@@ -25,7 +25,7 @@ public class Customer extends User{
         java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT * " +
-                        "FROM `User` u"+
+                        "FROM User u"+
                         "WHERE email = "+Email+"";
             stmt=conn.createStatement();
             ResultSet Rs = stmt.executeQuery(sql);
@@ -45,7 +45,7 @@ public class Customer extends User{
     public boolean insertUser(String UserID,String Name,String Email,String ContactNo,String Password){
         boolean flag = false;
         java.sql.Connection conn = new DBConnector().connect();
-        String sql = "Insert Into `User` u values ('"+UserID+"','"+Name+"','"+Email+"','"+ContactNo+"','"+Password+"')";
+        String sql = "Insert Into User u values ('"+UserID+"','"+Name+"','"+Email+"','"+ContactNo+"','"+Password+"')";
         
         try {
             stmt=conn.createStatement();
