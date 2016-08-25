@@ -46,6 +46,15 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         }
     }
     
+    public void disableCheckout(){
+        if(Double.parseDouble(txtCartTotal.getText() ) == 0){
+            btnCheckout.setEnabled(false);
+        }
+        else{
+            btnCheckout.setEnabled(true);
+        }
+    }
+    
     public void adjustColumns(){
         TableColumnModel tcm = tblCart.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
@@ -97,6 +106,13 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -253,6 +269,7 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshTable();
         disableButton();
+        disableCheckout();
     }//GEN-LAST:event_formWindowOpened
 
     private void tblCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCartMouseClicked
@@ -273,11 +290,18 @@ public class ShoppingCartGUI extends javax.swing.JFrame {
         s.removeFromCart(this.productID , this.supplierID, Integer.parseInt(txtQuantity.getText()));
         refreshTable();
         disableButton();
+        disableCheckout();
     }//GEN-LAST:event_btnRemoveFromCartActionPerformed
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
         new Checkout().setVisible(true);
     }//GEN-LAST:event_btnCheckoutActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        refreshTable();
+        disableButton();
+        disableCheckout();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
