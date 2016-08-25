@@ -153,7 +153,7 @@ public class ShoppingCart {
             String sql= "DELETE FROM ShoppingCartItem WHERE  user_id = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, c.getCurrentCustomerID());
-            ps.executeQuery();
+            ps.executeUpdate();
 
         }
         catch(Exception e){
