@@ -21,7 +21,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class ManageProducts extends javax.swing.JFrame {
     Product p = new Product();
-    /**
+    Supplier s= new Supplier();    /**
      * Creates new form ManageProducts
      */
     public ManageProducts() {
@@ -81,7 +81,7 @@ public class ManageProducts extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         txtImageLink2 = new javax.swing.JTextField();
         panelQuantity = new javax.swing.JPanel();
-        txtfieldDate = new javax.swing.JFormattedTextField();
+        ftxtfieldDate = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -339,7 +339,11 @@ public class ManageProducts extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        txtfieldDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/MM/yyyy"))));
+        try {
+            ftxtfieldDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel17.setText("Product Name");
 
@@ -384,6 +388,11 @@ public class ManageProducts extends javax.swing.JFrame {
         btnCancel2.setText("Cancel");
 
         cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSupplierID2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSupplierID2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelQuantityLayout = new javax.swing.GroupLayout(panelQuantity);
         panelQuantity.setLayout(panelQuantityLayout);
@@ -410,7 +419,7 @@ public class ManageProducts extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addGroup(panelQuantityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfieldDate)
+                            .addComponent(ftxtfieldDate)
                             .addComponent(cmbProductID2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtProductName)
                             .addComponent(txtSupplierName)
@@ -449,7 +458,7 @@ public class ManageProducts extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(panelQuantityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
-                                    .addComponent(txtfieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ftxtfieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23)
                                 .addGroup(panelQuantityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel16)
@@ -503,7 +512,7 @@ public class ManageProducts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
+                .addGap(73, 73, 73))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,6 +534,8 @@ public class ManageProducts extends javax.swing.JFrame {
          
         //Display all product IDs
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
+        //Display All supplier ID
+        cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierID().toArray()));
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -619,6 +630,11 @@ public class ManageProducts extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmbProductID2ActionPerformed
 
+    private void cmbSupplierID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierID2ActionPerformed
+                txtSupplierName.setText(s.getSupplierName(Integer.parseInt(cmbSupplierID2.getSelectedItem().toString())));
+
+    }//GEN-LAST:event_cmbSupplierID2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,6 +680,7 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCategory2;
     private javax.swing.JComboBox<String> cmbProductID2;
     private javax.swing.JComboBox<String> cmbSupplierID2;
+    private javax.swing.JFormattedTextField ftxtfieldDate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -705,6 +722,5 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSupplierName;
-    private javax.swing.JFormattedTextField txtfieldDate;
     // End of variables declaration//GEN-END:variables
 }

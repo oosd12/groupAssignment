@@ -19,13 +19,13 @@ public class Customer extends User{
     Statement stmt;
     private static String currentCustomer = "";
     
-    public boolean isUserExist(String Email){
+    public boolean isCustomerExist(String Email){
         boolean flag = false;
         
         java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT * " +
-                        "FROM `User` u"+
+                        "FROM User u"+
                         "WHERE email = "+Email+"";
             stmt=conn.createStatement();
             ResultSet Rs = stmt.executeQuery(sql);
@@ -42,10 +42,11 @@ public class Customer extends User{
         return flag;
     }
     
-    public boolean insertUser(String UserID,String Name,String Email,String ContactNo,String Password){
+    public boolean insertCustomer(String Name,String Email,String ContactNo,String Password){
         boolean flag = false;
         java.sql.Connection conn = new DBConnector().connect();
-        String sql = "Insert Into `User` u values ('"+UserID+"','"+Name+"','"+Email+"','"+ContactNo+"','"+Password+"')";
+        String sql = "INSERT INTO sql6131484.`User` (`name`, email, user_type, password, contact_number) \n" +
+"	VALUES ('"+Name+"', '"+Email+"', 'Customer', '"+Password+"', '"+ContactNo+"');";
         
         try {
             stmt=conn.createStatement();
@@ -57,7 +58,7 @@ public class Customer extends User{
         }
         return flag;
     }
-    
+   
     public String getCurrentCustomerName(){
         ResultSet rs = null;
         java.sql.Connection conn = new DBConnector().connect();
@@ -89,7 +90,7 @@ public class Customer extends User{
             if(rs.next()){
                 return rs.getInt(1);
             }
- 
+            
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);

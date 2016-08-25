@@ -38,4 +38,55 @@ public class Supplier {
         
         return supplierLocations;
     }
+    
+    public ArrayList getAllSupplierID(){
+        ResultSet rs = null;
+        ArrayList<String> idList = new ArrayList<>();
+        
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT  supplier_id FROM Supplier " ;
+                        
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                rs.getString(1);
+                idList.add(rs.getString(1));
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return idList;
+    }
+    
+    public String getSupplierName(int supplierID){
+        ResultSet rs = null;
+        String supName = "";
+        java.sql.Connection conn = new DBConnector().connect();
+        try{
+            String sql= "SELECT name FROM Supplier WHERE supplier_id = ? " ;
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, supplierID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+               supName = rs.getString(1);
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return supName;
+    }
 }
+
+
+

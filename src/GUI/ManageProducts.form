@@ -37,7 +37,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelContainer" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -506,7 +506,7 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="spnQuantity" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtfieldDate" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ftxtfieldDate" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbProductID2" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtProductName" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtSupplierName" alignment="0" max="32767" attributes="0"/>
@@ -554,7 +554,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtfieldDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ftxtfieldDate" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -580,10 +580,10 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JFormattedTextField" name="txtfieldDate">
+            <Component class="javax.swing.JFormattedTextField" name="ftxtfieldDate">
               <Properties>
-                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                  <Format format="d/MM/yyyy" subtype="-1" type="1"/>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                  <Format format="##-##-####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -681,6 +681,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbSupplierID2ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
