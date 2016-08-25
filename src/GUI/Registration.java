@@ -209,20 +209,19 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-
-        String UserID = txtUserID.getText();
+        Customer c1 = new Customer();
+        
+        String UserID;
         String Name = txtName.getText();
         String Email = txtEmail.getText();
         String ContactNo = txtContactno.getText();
         String Password = txtPassword.getText();
         
-        Customer c1 = new Customer();
-        
-        if(c1.isUserExist(Email)){
+        if(c1.isCustomerExist(Email)){
             MsgRegister.showMessageDialog(this, "Customer is already in the system");
         }
         else {
-            c1.insertUser(UserID, Name, Email,ContactNo, Password);
+            c1.insertCustomer(Name, Email,ContactNo, Password);
             MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
             }
         
