@@ -142,7 +142,6 @@ public class ManageProducts extends javax.swing.JFrame {
         jLabel2.setText("Name");
 
         lblImage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/camIcon.png"))); // NOI18N
         lblImage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setText("Category");
@@ -238,7 +237,6 @@ public class ManageProducts extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblModify);
 
         lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/camIcon.png"))); // NOI18N
         lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setText("Save");
@@ -458,7 +456,7 @@ public class ManageProducts extends javax.swing.JFrame {
                             .addComponent(txtPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(cmbSupplierID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelQuantityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelQuantityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSave1)
                     .addComponent(btnCancel2))
                 .addContainerGap(38, Short.MAX_VALUE))
