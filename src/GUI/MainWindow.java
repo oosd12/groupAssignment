@@ -426,7 +426,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         lblProductImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblProductImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/camIcon.png"))); // NOI18N
         lblProductImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel8.setBackground(java.awt.SystemColor.controlHighlight);
