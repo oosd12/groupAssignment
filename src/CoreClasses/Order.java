@@ -107,4 +107,26 @@ public class Order {
         java.sql.Date sqlDate = new java.sql.Date(today2.getTime());
         return sqlDate;
     }
+    
+    
+    public ResultSet getAllOrders(){
+        ResultSet rs = null;
+        try{
+             String sql= "SELECT o.order_id, o.order_date ,u.email, p.name, s.name, op.quantity, op.collection_status, op.deliver_status, o.deliveryMode " +
+                        "FROM `sql6131484`.`Order_Product` op " +
+                        "JOIN `sql6131484`.`Order` o on op.order_id = o.order_id "+
+                        "JOIN `sql6131484`.`Product` p on op.product_id = p.product_id "+
+                        "JOIN `sql6131484`.`Supplier` s on op.supplier_id = s.supplier_id "+
+                        "JOIN `sql6131484`.`User` u on o.user_id = u.user_id ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return rs;
+        
+        
+    }
 }
