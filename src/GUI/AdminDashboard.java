@@ -8,6 +8,7 @@ package GUI;
 import CoreClasses.Admin;
 import CoreClasses.Customer;
 import CoreClasses.DBConnector;
+import CoreClasses.Order;
 import CoreClasses.Product;
 import CoreClasses.Supplier;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     java.sql.Connection conn = new DBConnector().connect();
     
     Product p = new Product();
+    Order o = new Order();
     /**
      * Creates new form AdminDashboard
      */
@@ -32,11 +34,14 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
     
     public void refreshTable(){
-        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAllSupplies()));        
+        tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAllSupplies()));       
+        tblOrders.setModel(DbUtils.resultSetToTableModel(o.getAllOrders()));       
+        
         adjustColumns();
     }
     
     public void adjustColumns(){
+        //Products
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.getColumn(0).setHeaderValue("Product ID");
         tcm.getColumn(1).setHeaderValue("Supplier ID");
@@ -46,7 +51,19 @@ public class AdminDashboard extends javax.swing.JFrame {
         tcm.getColumn(5).setHeaderValue("Manufactured");
         tcm.getColumn(6).setHeaderValue("Price");
         tcm.getColumn(7).setHeaderValue("Category");
-        tcm.getColumn(8).setHeaderValue("City");
+        
+        //Orders table
+        TableColumnModel tcm2 = tblOrders.getColumnModel();
+        tcm2.getColumn(0).setHeaderValue("Order ID");
+        tcm2.getColumn(1).setHeaderValue("Date");
+        tcm2.getColumn(2).setHeaderValue("Customer");
+        tcm2.getColumn(3).setHeaderValue("Product");
+        tcm2.getColumn(4).setHeaderValue("Supplier");
+        tcm2.getColumn(5).setHeaderValue("Quantity");
+        tcm2.getColumn(6).setHeaderValue("Collection");
+        tcm2.getColumn(7).setHeaderValue("Delivery");
+        tcm2.getColumn(8).setHeaderValue("Method");
+        
         
         
     }
@@ -66,12 +83,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         cmbFilter = new javax.swing.JComboBox<>();
         cmbSort = new javax.swing.JComboBox<>();
-        cmbLocation = new javax.swing.JComboBox<>();
+        cmbSupplier = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrders = new javax.swing.JTable();
         btnManageProducts = new javax.swing.JButton();
         btnManageCustomers = new javax.swing.JButton();
         btnManageSuppliers = new javax.swing.JButton();
@@ -120,7 +137,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier City..." }));
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier City..." }));
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,7 +155,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Orders");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -149,7 +166,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblOrders);
 
         btnManageProducts.setText("Manage Products");
         btnManageProducts.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +223,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +249,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(btnSearch)
                     .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +287,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         String keyword = txtSearchBar.getText();
         String filter = cmbFilter.getSelectedItem().toString();
         String sort = cmbSort.getSelectedItem().toString();
-        String location = cmbLocation.getSelectedItem().toString();
+        String location = cmbSupplier.getSelectedItem().toString();
         
        
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.searchAllSupplies(keyword, filter, sort, location)));
@@ -289,7 +306,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         refreshTable();
         Supplier s = new Supplier();
         //Display all supplier locations (cities)
-        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierNames().toArray()));
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -360,14 +377,14 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSpecialOffers;
     private javax.swing.JComboBox<String> cmbFilter;
-    private javax.swing.JComboBox<String> cmbLocation;
     private javax.swing.JComboBox<String> cmbSort;
+    private javax.swing.JComboBox<String> cmbSupplier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblOrders;
     private javax.swing.JTable tblProducts;
     private javax.swing.JTextField txtSearchBar;
     // End of variables declaration//GEN-END:variables
