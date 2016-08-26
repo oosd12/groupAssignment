@@ -29,12 +29,6 @@ public class CollectionOfficer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager1 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("sql6131484PU").createEntityManager();
-        sql6131484PUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("sql6131484PU").createEntityManager();
-        orderProductQuery = java.beans.Beans.isDesignTime() ? null : sql6131484PUEntityManager.createQuery("SELECT o FROM OrderProduct o");
-        orderProductList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : orderProductQuery.getResultList();
-        orderProductQuery1 = java.beans.Beans.isDesignTime() ? null : sql6131484PUEntityManager.createQuery("SELECT o FROM OrderProduct o");
-        orderProductList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : orderProductQuery1.getResultList();
         jLabel1 = new javax.swing.JLabel();
         btnCollected = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
@@ -223,7 +217,6 @@ public class CollectionOfficer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollected;
     private javax.swing.JButton btnLogOut;
-    private javax.persistence.EntityManager entityManager1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -232,11 +225,6 @@ public class CollectionOfficer extends javax.swing.JFrame {
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblSupplierAddress;
     private javax.swing.JLabel lblSupplierName;
-    private java.util.List<GUI.OrderProduct> orderProductList;
-    private java.util.List<GUI.OrderProduct> orderProductList1;
-    private javax.persistence.Query orderProductQuery;
-    private javax.persistence.Query orderProductQuery1;
-    private javax.persistence.EntityManager sql6131484PUEntityManager;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSupplierAddress;
