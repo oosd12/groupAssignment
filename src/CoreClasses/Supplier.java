@@ -18,12 +18,12 @@ public class Supplier {
     private ArrayList<String> supplierLocations = new ArrayList<String>();
     java.sql.Connection conn = DBConnector.getDBConnection();
     
-    public ArrayList getAllSupplierLocations(){
-        supplierLocations.add("All Locations");
+    public ArrayList getAllSupplierNames(){
+        supplierLocations.add("All Suppliers");
         ResultSet rs = null;
         
         try{
-            String sql= "SELECT city FROM Supplier";
+            String sql= "SELECT name FROM Supplier";
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             String city;
