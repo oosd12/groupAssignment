@@ -29,7 +29,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }
     
     public void adjustColumns(){
-        TableColumnModel tcm = tblModify.getColumnModel();
+        TableColumnModel tcm = tblModify.getColumnModel(); 
         tcm.removeColumn(tcm.getColumn(3));//removing product ID
         tcm.getColumn(0).setHeaderValue("Product ID");
         tcm.getColumn(1).setHeaderValue("Product Name");
