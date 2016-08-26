@@ -32,7 +32,7 @@ public class DBConnector {
         }
         String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
         try{
-            DBConnection = (Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
+            DBConnector.DBConnection = (Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
             System.out.println("Database Connected");
         }
         catch(SQLException se){
@@ -42,6 +42,7 @@ public class DBConnector {
         }
         return DBConnection;
     }
+    
 }
 
 //I like coffee
