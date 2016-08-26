@@ -7,6 +7,7 @@ package GUI;
 
 import CoreClasses.Admin;
 import CoreClasses.Customer;
+import CoreClasses.DBConnector;
 import CoreClasses.Product;
 import CoreClasses.Supplier;
 import javax.swing.JOptionPane;
@@ -18,6 +19,10 @@ import net.proteanit.sql.DbUtils;
  * @author Abdullah
  */
 public class AdminDashboard extends javax.swing.JFrame {
+    
+    //Make initial connection to DB
+    java.sql.Connection conn = new DBConnector().connect();
+    
     Product p = new Product();
     /**
      * Creates new form AdminDashboard
