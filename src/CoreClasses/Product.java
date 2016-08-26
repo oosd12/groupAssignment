@@ -59,7 +59,7 @@ public class Product {
             filter="";
         }
         
-        if(location.equals("All Locations")){
+        if(location.equals("All Suppliers")){
             location = "";
         }
         
@@ -70,7 +70,7 @@ public class Product {
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link, s.city " +
                         "FROM Supplier_Product sp " +
                         " JOIN Supplier s on sp.supplier_id = s.supplier_id  "+
-                        " JOIN Product p on sp.product_id = p.product_id WHERE s.city LIKE ? AND p.name LIKE ? AND p.category LIKE ? AND sp.quantity_available > 0 "+
+                        " JOIN Product p on sp.product_id = p.product_id WHERE s.name LIKE ? AND p.name LIKE ? AND p.category LIKE ? AND sp.quantity_available > 0 "+
                         sortCondition;
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -134,7 +134,7 @@ public class Product {
     public ResultSet getAllSupplies(){
         ResultSet rs = null;
         try{
-            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
+            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category " +
                         "FROM Supplier_Product sp " +
                         "JOIN Supplier s on sp.supplier_id = s.supplier_id "+
                         "JOIN Product p on sp.product_id = p.product_id ";
@@ -174,7 +174,7 @@ public class Product {
             filter="";
         }
         
-        if(location.equals("All Locations")){
+        if(location.equals("All Suppliers")){
             location = "";
         }
         
@@ -182,10 +182,10 @@ public class Product {
         
         ResultSet rs = null;
         try{
-            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
+            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category " +
                         "FROM Supplier_Product sp " +
                         " JOIN Supplier s on sp.supplier_id = s.supplier_id  "+
-                        " JOIN Product p on sp.product_id = p.product_id WHERE s.city LIKE ? AND p.name LIKE ? AND p.category LIKE ? "+
+                        " JOIN Product p on sp.product_id = p.product_id WHERE s.name LIKE ? AND p.name LIKE ? AND p.category LIKE ? "+
                         sortCondition;
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -193,7 +193,6 @@ public class Product {
             ps.setString(2, "%"+keyword+"%");
             ps.setString(3, "%"+filter+"%");
 
-            
 
             rs = ps.executeQuery();
         }
