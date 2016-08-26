@@ -121,14 +121,16 @@ public class MainWindow extends javax.swing.JFrame {
         TableColumnModel tcm = tblProducts.getColumnModel();
         tcm.removeColumn(tcm.getColumn(0));//removing product ID
         tcm.removeColumn(tcm.getColumn(0));//removing supplier ID
-        tcm.removeColumn(tcm.getColumn(6));//removing supplier ID
+        tcm.removeColumn(tcm.getColumn(6));
+        tcm.removeColumn(tcm.getColumn(6));//removing City
+        
         tcm.getColumn(0).setHeaderValue("Product");
         tcm.getColumn(1).setHeaderValue("Supplier");
         tcm.getColumn(2).setHeaderValue("Quantity");
         tcm.getColumn(3).setHeaderValue("Manufactured");
         tcm.getColumn(4).setHeaderValue("Price");
         tcm.getColumn(5).setHeaderValue("Category");
-        tcm.getColumn(6).setHeaderValue("City");
+
 
         //adjusting cell widths of the table
         tcm.getColumn(2).setMaxWidth(70);
@@ -188,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         cmbFilter = new javax.swing.JComboBox<>();
         cmbSort = new javax.swing.JComboBox<>();
-        cmbLocation = new javax.swing.JComboBox<>();
+        cmbSupplier = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -550,7 +552,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier City..." }));
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier City..." }));
 
         javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
         panelTop.setLayout(panelTopLayout);
@@ -573,7 +575,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTopLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -591,7 +593,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(btnSearch)
                     .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -643,7 +645,7 @@ public class MainWindow extends javax.swing.JFrame {
         String keyword = txtSearchBar.getText();
         String filter = cmbFilter.getSelectedItem().toString();
         String sort = cmbSort.getSelectedItem().toString();
-        String location = cmbLocation.getSelectedItem().toString();
+        String location = cmbSupplier.getSelectedItem().toString();
 
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.searchForProducts(keyword, filter, sort, location)));
         adjustColumns();
@@ -671,7 +673,7 @@ public class MainWindow extends javax.swing.JFrame {
         disableButton();
         Supplier s = new Supplier();
         //Display all supplier locations (cities)
-        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierLocations().toArray()));
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierNames().toArray()));
 
         //Display No. Items in cart
         if (Customer.getCurrentCustomer() != null) {
@@ -834,8 +836,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnViewCart1;
     private javax.swing.JButton btnViewReview;
     private javax.swing.JComboBox<String> cmbFilter;
-    private javax.swing.JComboBox<String> cmbLocation;
     private javax.swing.JComboBox<String> cmbSort;
+    private javax.swing.JComboBox<String> cmbSupplier;
     private javax.swing.JFormattedTextField ftxtProductionDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
