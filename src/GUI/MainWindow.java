@@ -46,7 +46,7 @@ public class MainWindow extends javax.swing.JFrame {
         //look & feel
         initComponents();
         String s;
-        s = "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel";
+        s = "de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel"; 
 
         try {
             javax.swing.UIManager.setLookAndFeel(s);
