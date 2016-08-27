@@ -664,7 +664,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxtProductionDateActionPerformed
 
     private void btnViewReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReviewActionPerformed
-        // TODO add your handling code here:
+        new ReviewGUI().setVisible(true);
     }//GEN-LAST:event_btnViewReviewActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
