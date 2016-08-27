@@ -5,12 +5,15 @@
  */
 package GUI;
 
+import CoreClasses.DBConnector;
+
 /**
  *
  * @author Neshan
  */
 public class DeliveryOfficer extends javax.swing.JFrame {
-
+    //Make initial connection to DB
+    java.sql.Connection conn = new DBConnector().connect();
     /**
      * Creates new form DeliveryOfficer
      */

@@ -15,6 +15,7 @@ import java.sql.Statement;
  * @author Abdullah
  */
 public class Customer extends User{
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     Statement stmt;
     private static String currentCustomer = "";
@@ -22,7 +23,6 @@ public class Customer extends User{
     public boolean isCustomerExist(String Email){
         boolean flag = false;
         
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT * " +
                         "FROM User u"+
@@ -44,7 +44,6 @@ public class Customer extends User{
     
     public boolean insertCustomer(String Name,String Email,String ContactNo,String Password){
         boolean flag = false;
-        java.sql.Connection conn = new DBConnector().connect();
         String sql = "INSERT INTO sql6131484.`User` (`name`, email, user_type, password, contact_number) \n" +
 "	VALUES ('"+Name+"', '"+Email+"', 'Customer', '"+Password+"', '"+ContactNo+"');";
         
@@ -61,7 +60,6 @@ public class Customer extends User{
    
     public String getCurrentCustomerName(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT name FROM User WHERE email = ?  ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -81,7 +79,6 @@ public class Customer extends User{
     
     public int getCurrentCustomerID(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT user_id FROM User WHERE email = ?  ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -111,7 +108,6 @@ public class Customer extends User{
         String[] personalDetails = new String[3];
         ResultSet rs = null;
         
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT name,contact_number FROM User WHERE email = ?  ";
             PreparedStatement ps = conn.prepareStatement(sql);

@@ -16,8 +16,10 @@ import javax.swing.JOptionPane;
  */
 public class Delivery {
     Customer c = new Customer();
+    java.sql.Connection conn = DBConnector.getDBConnection();
+    
     public void addDeliveryAddress(String street, String city, String postCode, int orderID){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "INSERT INTO DeliveryAddress (street, city, post_code, order_id) VALUES (?, ?, ?, ?) ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -37,8 +39,6 @@ public class Delivery {
     public String[] getLastDeliveryAddress(){
         String[] address = new String[3];
         ResultSet rs = null;
-        
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT da.street, da.city, da.post_code " +
                         "FROM DeliveryAddress da " +

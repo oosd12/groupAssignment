@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class Product {
-    
+    java.sql.Connection conn = DBConnector.getDBConnection();
     public ResultSet getAvailableProducts(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
+        
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link, s.city " +
                         "FROM Supplier_Product sp " +
@@ -59,19 +59,18 @@ public class Product {
             filter="";
         }
         
-        if(location.equals("All Locations")){
+        if(location.equals("All Suppliers")){
             location = "";
         }
         
         
         
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category,p.image_link, s.city " +
                         "FROM Supplier_Product sp " +
                         " JOIN Supplier s on sp.supplier_id = s.supplier_id  "+
-                        " JOIN Product p on sp.product_id = p.product_id WHERE s.city LIKE ? AND p.name LIKE ? AND p.category LIKE ? AND sp.quantity_available > 0 "+
+                        " JOIN Product p on sp.product_id = p.product_id WHERE s.name LIKE ? AND p.name LIKE ? AND p.category LIKE ? AND sp.quantity_available > 0 "+
                         sortCondition;
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -93,7 +92,6 @@ public class Product {
     }
     public ResultSet getAllProducts(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT * FROM Product";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -109,8 +107,6 @@ public class Product {
     }
     
     public void adjustQuantity(String operation, int quantity, int supplierID, int productID){
-       
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql = "";
             if(operation.equals("Increase")){
@@ -137,9 +133,8 @@ public class Product {
     //For use on admin dashboard products table
     public ResultSet getAllSupplies(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
-            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
+            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category " +
                         "FROM Supplier_Product sp " +
                         "JOIN Supplier s on sp.supplier_id = s.supplier_id "+
                         "JOIN Product p on sp.product_id = p.product_id ";
@@ -179,19 +174,18 @@ public class Product {
             filter="";
         }
         
-        if(location.equals("All Locations")){
+        if(location.equals("All Suppliers")){
             location = "";
         }
         
         
         
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
-            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category, s.city " +
+            String sql= "SELECT sp.product_id, sp.supplier_id, p.name,s.name, sp.quantity_available, sp.production_date, sp.price, p.category " +
                         "FROM Supplier_Product sp " +
                         " JOIN Supplier s on sp.supplier_id = s.supplier_id  "+
-                        " JOIN Product p on sp.product_id = p.product_id WHERE s.city LIKE ? AND p.name LIKE ? AND p.category LIKE ? "+
+                        " JOIN Product p on sp.product_id = p.product_id WHERE s.name LIKE ? AND p.name LIKE ? AND p.category LIKE ? "+
                         sortCondition;
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -199,7 +193,6 @@ public class Product {
             ps.setString(2, "%"+keyword+"%");
             ps.setString(3, "%"+filter+"%");
 
-            
 
             rs = ps.executeQuery();
         }
@@ -214,7 +207,6 @@ public class Product {
     
     public ResultSet searchAdminProducts(String keyword){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT  * FROM Product WHERE name LIKE ? " ;
                         
@@ -235,8 +227,7 @@ public class Product {
     public ArrayList getAllProductID(){
         ResultSet rs = null;
         ArrayList<String> idList = new ArrayList<>();
-        
-        java.sql.Connection conn = new DBConnector().connect();
+       
         try{
             String sql= "SELECT  product_id FROM Product " ;
                         
@@ -261,7 +252,6 @@ public class Product {
     public String getProductName(int productID){
         ResultSet rs = null;
         String prodName = "";
-        java.sql.Connection conn = new DBConnector().connect();
         try{
             String sql= "SELECT name FROM Product WHERE product_id = ? " ;
 

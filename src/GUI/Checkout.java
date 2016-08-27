@@ -9,6 +9,7 @@ import CoreClasses.Customer;
 import CoreClasses.Delivery;
 import CoreClasses.Order;
 import CoreClasses.ShoppingCart;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -508,6 +509,9 @@ public class Checkout extends javax.swing.JFrame {
        tax = 11.0;
        grossTotal = Double.parseDouble(txtGrossTotal.getText());
        netTotal = ((100.0+tax)/100.0)*grossTotal;
+       DecimalFormat df = new DecimalFormat("#.##");      
+       netTotal = Double.valueOf(df.format(netTotal));
+       
        txtTax.setText(""+tax);
        txtNetTotal.setText(""+netTotal);
        

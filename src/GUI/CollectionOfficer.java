@@ -5,12 +5,16 @@
  */
 package GUI;
 
+import CoreClasses.DBConnector;
+
 /**
  *
  * @author Neshan
  */
 public class CollectionOfficer extends javax.swing.JFrame {
-
+    //Make initial connection to DB
+    java.sql.Connection conn = new DBConnector().connect();
+    
     /**
      * Creates new form CollectionOfficer
      */

@@ -21,9 +21,10 @@ import javax.swing.JOptionPane;
 public class Order {
     int orderID;
     Customer c = new Customer();
+    java.sql.Connection conn = DBConnector.getDBConnection();
     
     public void placeOrder(double grossTotal, double netTotal,double tax, String orderType, String deliveryMode, String street, String city, String postCode){
-        java.sql.Connection conn = new DBConnector().connect();
+        
         ResultSet rs = null;
         try{
             String sql= "INSERT INTO `sql6131484`.`Order` ( order_date, gross_total, tax, net_total, order_type, deliveryMode, user_id) VALUES ( ?, ?, ?, ?, ?, ?, ? ); ";
@@ -59,7 +60,6 @@ public class Order {
     
     public void addToOrderProduct(){
         ResultSet rs = null;
-        java.sql.Connection conn = new DBConnector().connect();
         //Get all items from shopping cart and add each item to order_product table
         try{
             String sql= "SELECT  supplier_id, product_id, quantity " +
@@ -106,5 +106,27 @@ public class Order {
         Date today2 = dateFormat.parse(today);
         java.sql.Date sqlDate = new java.sql.Date(today2.getTime());
         return sqlDate;
+    }
+    
+    
+    public ResultSet getAllOrders(){
+        ResultSet rs = null;
+        try{
+             String sql= "SELECT o.order_id, o.order_date ,u.email, p.name, s.name, op.quantity, op.collection_status, op.deliver_status, o.deliveryMode " +
+                        "FROM `sql6131484`.`Order_Product` op " +
+                        "JOIN `sql6131484`.`Order` o on op.order_id = o.order_id "+
+                        "JOIN `sql6131484`.`Product` p on op.product_id = p.product_id "+
+                        "JOIN `sql6131484`.`Supplier` s on op.supplier_id = s.supplier_id "+
+                        "JOIN `sql6131484`.`User` u on o.user_id = u.user_id  ORDER BY o.order_date DESC";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return rs;
+        
+        
     }
 }

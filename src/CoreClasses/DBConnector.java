@@ -15,7 +15,13 @@ import javax.swing.JOptionPane;
  * @author Abdullah
  */
 public class DBConnector {
-    private Connection DBConnection;
+    private static Connection DBConnection;
+
+    public static Connection getDBConnection() {
+        return DBConnection;
+    }
+    
+    
     public Connection connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -26,15 +32,17 @@ public class DBConnector {
         }
         String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
         try{
-            DBConnection = (Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
+            DBConnector.DBConnection = (Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
             System.out.println("Database Connected");
         }
         catch(SQLException se){
             System.out.println("Database Not Found " + se);
             JOptionPane.showMessageDialog(null, "Database connection failed, please check your internet connection", "Connection Failure", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         return DBConnection;
     }
+    
 }
 
 //I like coffee
