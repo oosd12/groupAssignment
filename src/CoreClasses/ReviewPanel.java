@@ -37,7 +37,7 @@ public class ReviewPanel {
         this.lblUsername.setText("Customer : "+userName);
         this.lblDate.setText("Date : "+date);
         this.lblRating.setText("Product Rating : "+rating);
-        this.txtComment.setText("Comment : "+comment);
+        this.txtComment.setText("Comment : \n"+comment);
     }
     
     

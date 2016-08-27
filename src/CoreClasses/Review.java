@@ -16,7 +16,7 @@ public class Review {
     private String username, comment;
     private Date date;
     private int rating;
-    
+    private int productID, supplierID;
     ReviewPanel rp;
     
     public Review(String userName, String comment, int rating, Date date) {
@@ -60,5 +60,30 @@ public class Review {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public int getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(int supplierID) {
+        this.supplierID = supplierID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     
 }

@@ -112,8 +112,10 @@ public class MainWindow extends javax.swing.JFrame {
     public void disableButton() {
         if (txtProductName.getText().equals("")) {
             btnAddToCart.setEnabled(false);
+            btnViewReview.setEnabled(false);
         } else {
             btnAddToCart.setEnabled(true);
+            btnViewReview.setEnabled(true);
         }
     }
 
@@ -664,7 +666,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ftxtProductionDateActionPerformed
 
     private void btnViewReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReviewActionPerformed
-        new ReviewGUI().setVisible(true);
+        new ReviewGUI(this.productID, this.supplierID).setVisible(true);
     }//GEN-LAST:event_btnViewReviewActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
