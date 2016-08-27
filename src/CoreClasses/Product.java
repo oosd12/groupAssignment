@@ -270,5 +270,33 @@ public class Product {
         
         return prodName;
     }
+    
+    //Add product
+    public class addProduct{
+    Product p = new Product();
+    
+    java.sql.Connection conn = DBConnector.getDBConnection();
+    
+    
+    public void addToProduct(int productID, String name, String category, String image_link){
+        
+        try{
+            String sql= "INSERT INTO Product (product_id, name, category, image_link) VALUES (?, ?, ?, ?) ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productID);
+            ps.setString(2, name);
+            ps.setString(3, category);
+            ps.setString(4, image_link);
+            
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+    }
+    
+    }
 }
 
