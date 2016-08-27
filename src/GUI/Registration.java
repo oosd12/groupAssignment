@@ -45,10 +45,10 @@ public class Registration extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblRegistration.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        lblRegistration.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblRegistration.setText("Registration");
 
-        btnRegister.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnRegister.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +56,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        btnReset.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnReset.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +74,7 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        lblEmail.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblEmail.setText("E-mail :");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -83,13 +83,13 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        lblName.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblName.setText("Name :");
 
-        lblPassword.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPassword.setText("Password :");
 
-        lblContactno.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblContactno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblContactno.setText("Contact No. :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -155,7 +155,7 @@ public class Registration extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
