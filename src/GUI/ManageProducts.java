@@ -22,8 +22,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class ManageProducts extends javax.swing.JFrame {
     
-    int productID;
-    String name,category,image_link;
+    
     
     Product p = new Product();
     Supplier s= new Supplier();    /**
@@ -633,7 +632,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbSupplierID2ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-            p.addProduct(this.txtProductID, this.txtName,this.cmbCategory,this.txtImageLink);
+            p.addToProduct(Integer.parseInt(txtProductID.getText()), txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
             JOptionPane.showMessageDialog(null, txtProductID.getText() + " product added","", JOptionPane.INFORMATION_MESSAGE);
            
     }//GEN-LAST:event_btnAddActionPerformed
