@@ -49,25 +49,22 @@ public class DeliveryOfficer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Delivery Officer");
 
-        btnDelivered.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnDelivered.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelivered.setText("Delivered");
-        btnDelivered.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnRejected.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnRejected.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRejected.setText("Rejected");
-        btnRejected.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRejected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRejectedActionPerformed(evt);
             }
         });
 
-        btnLogout.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        btnLogout.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnLogout.setText("LogOut");
-        btnLogout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -106,7 +103,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtOrderDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,16 +123,16 @@ public class DeliveryOfficer extends javax.swing.JFrame {
             }
         });
 
-        lblOrderID.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblOrderID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblOrderID.setText("Order ID :");
 
-        lblCustomerAddress.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblCustomerAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCustomerAddress.setText("Customer Address :");
 
-        lblOrderDate.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblOrderDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblOrderDate.setText("Order Date :");
 
-        lblCustomerName.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        lblCustomerName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCustomerName.setText("Customer Name :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
