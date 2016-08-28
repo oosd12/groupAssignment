@@ -197,7 +197,7 @@ public class Registration extends javax.swing.JFrame {
         String Password = txtPassword.getText();
         
         if(c1.isCustomerExist(Email)){
-            MsgRegister.showMessageDialog(this, "Customer is already in the system");
+            MsgRegister.showMessageDialog(this, "Customer is already in the system..Enter Different E-mail!");
         }
         else {
             c1.insertCustomer(Name, Email,ContactNo, Password);
