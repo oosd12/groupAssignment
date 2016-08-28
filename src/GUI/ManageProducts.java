@@ -636,7 +636,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbSupplierID2ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-            p.addToProduct(Integer.parseInt(txtProductID.getText()), txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
+            p.addToProduct(txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
             JOptionPane.showMessageDialog(null, txtProductID.getText() + " product added","", JOptionPane.INFORMATION_MESSAGE);
            
             //Display next product ID
