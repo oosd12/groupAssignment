@@ -529,6 +529,10 @@ public class ManageProducts extends javax.swing.JFrame {
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
         //Display All supplier ID
         cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierID().toArray()));
+        
+        //Display next product ID
+        txtProductID.setText(""+p.getNextProductID());
+        
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -635,6 +639,8 @@ public class ManageProducts extends javax.swing.JFrame {
             p.addToProduct(Integer.parseInt(txtProductID.getText()), txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
             JOptionPane.showMessageDialog(null, txtProductID.getText() + " product added","", JOptionPane.INFORMATION_MESSAGE);
            
+            //Display next product ID
+            txtProductID.setText(""+p.getNextProductID());
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
