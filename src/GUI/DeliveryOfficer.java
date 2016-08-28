@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.DBConnector;
+import java.sql.Date;
 
 /**
  *
@@ -14,6 +15,8 @@ import CoreClasses.DBConnector;
 public class DeliveryOfficer extends javax.swing.JFrame {
     //Make initial connection to DB
     java.sql.Connection conn = new DBConnector().connect();
+    String OrderID,CustomerName,CustomerAddress;
+    Date OrderDate;
     /**
      * Creates new form DeliveryOfficer
      */
@@ -34,7 +37,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrderProducts = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtOrderDate = new javax.swing.JTextField();
         txtCustomerAddress = new javax.swing.JTextField();
@@ -63,7 +66,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrderProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,7 +77,12 @@ public class DeliveryOfficer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblOrderProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrderProductsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblOrderProducts);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,6 +273,17 @@ public class DeliveryOfficer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void tblOrderProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderProductsMouseClicked
+    //    int row = tblOrderProducts.getSelectedRow();
+    //   this.OrderID = (tblOrderProducts.getModel().getValueAt(row, 0).toString());
+    //    this.OrderDate = Date.valueOf((tblOrderProducts.getModel().getValueAt(row, 1).toString()));
+
+    //    txtOrderID.setText((tblOrderProducts.getModel().getValueAt(row, 0).toString()));
+    //    txtCustomerName.setText((tblOrderProducts.getModel().getValueAt(row, 3).toString()));
+    //    txtCustomerAddress.setText((tblOrderProducts.getModel().getValueAt(row, 6).toString()));
+        
+    }//GEN-LAST:event_tblOrderProductsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -309,11 +328,11 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCustomerAddress;
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblOrderDate;
     private javax.swing.JLabel lblOrderID;
+    private javax.swing.JTable tblOrderProducts;
     private javax.swing.JTextField txtCustomerAddress;
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtOrderDate;
