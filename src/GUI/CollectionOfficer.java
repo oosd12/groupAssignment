@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.DBConnector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,6 +61,11 @@ public class CollectionOfficer extends javax.swing.JFrame {
 
         btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLogOut.setText("LogOut");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -241,6 +247,19 @@ public class CollectionOfficer extends javax.swing.JFrame {
         MsgCollection.showMessageDialog(this,"Order Has Been Collected!");
         
     }//GEN-LAST:event_btnCollectedActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        int Choice = MsgCollection.YES_NO_OPTION;
+        
+        MsgCollection.showConfirmDialog(null,"Are you sure you want to LogOut?");
+        
+            if (Choice == JOptionPane.YES_OPTION){
+                dispose();
+                new MainWindow().setVisible(true);
+            }else{
+                new CollectionOfficer().setVisible(true);
+            }
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments

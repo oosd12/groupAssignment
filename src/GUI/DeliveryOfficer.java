@@ -7,6 +7,7 @@ package GUI;
 
 import CoreClasses.DBConnector;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +34,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MsgDelivery = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -270,7 +272,16 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRejectedActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
+        int Choice = MsgDelivery.YES_NO_OPTION;
+        
+        MsgDelivery.showConfirmDialog(null,"Are you sure you want to LogOut?");
+        
+            if (Choice == JOptionPane.YES_OPTION){
+                dispose();
+                new MainWindow().setVisible(true);
+            }else{
+                new DeliveryOfficer().setVisible(true);
+            }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void tblOrderProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderProductsMouseClicked
@@ -320,6 +331,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JOptionPane MsgDelivery;
     private javax.swing.JButton btnDelivered;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRejected;
