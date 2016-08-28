@@ -272,12 +272,7 @@ public class Product {
     }
     
     //Add product
-    public class addProduct{
-    Product p = new Product();
-    
-    java.sql.Connection conn = DBConnector.getDBConnection();
-    
-    
+   
     public void addToProduct(int productID, String name, String category, String image_link){
         
         try{
@@ -298,5 +293,5 @@ public class Product {
     }
     
     }
-}
+
 
