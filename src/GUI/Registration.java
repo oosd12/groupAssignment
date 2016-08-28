@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Customer;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Neshan
@@ -198,6 +199,10 @@ public class Registration extends javax.swing.JFrame {
         
         if(c1.isCustomerExist(Email)){
             MsgRegister.showMessageDialog(this, "Customer is already in the system..Enter Different E-mail!");
+            txtName.setText("");
+            txtEmail.setText("");
+            txtContactno.setText("");
+            txtPassword.setText("");
         }
         else {
             c1.insertCustomer(Name, Email,ContactNo, Password);
@@ -207,9 +212,16 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        dispose();
-        MainWindow m1 = new MainWindow();
-        m1.setVisible(true);
+        int Choice = MsgRegister.YES_NO_OPTION;
+        
+        MsgRegister.showConfirmDialog(null,"Are you sure you want to exit?");
+        
+            if (Choice == JOptionPane.YES_OPTION){
+                dispose();
+                new MainWindow().setVisible(true);
+            }else{
+                new Registration().setVisible(true);
+            }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
