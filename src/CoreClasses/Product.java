@@ -292,6 +292,25 @@ public class Product {
         
     }
     
+    public int getNextProductID(){
+        ResultSet rs = null;
+        try{
+            String sql= "SELECT MAX(product_id) FROM Product";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                return rs.getInt(1) + 1;
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return 0;
     }
+}
 
 
