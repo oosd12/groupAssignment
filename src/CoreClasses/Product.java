@@ -5,6 +5,7 @@
  */
 package CoreClasses;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -313,20 +314,79 @@ public class Product {
     }
     
     public void  updateProduct(int productID,String name, String category, String image_link){
-        ResultSet rs = null;
         try{
-            String sql= "UPDATE Product" +
-                        "SET `name` = ?, category = ?, image_link = ? " +
-                        "WHERE product_id = ? ";
+            String sql= " UPDATE Product " +
+                        " SET `name` = ?, category = ?, image_link = ? " +
+                        " WHERE product_id = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, category);
             ps.setString(3, image_link);
             ps.setInt(4, productID);
+            System.out.println(""+ps);
+            ps.executeUpdate();
+            
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
 
+    }
+    
+    
+    public void adjustSupply(int supplierID, int productID, int quantity, Date date, double price){
+        ResultSet rs = null;
+        try{
+            String sql= "SELECT supplier_id, product_id FROM Supplier_Product WHERE supplier_id = ? AND product_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, supplierID);
+            ps.setInt(2, productID);
             rs = ps.executeQuery();
             
-            
+            if(rs.next()){
+                //update product
+                try{
+                    String sql2= " UPDATE Supplier_Product " +
+                                " SET `quantity_available` = ?, `production_date` = ?, `price` = ? " +
+                                " WHERE product_id = ? AND supplier_id = ? ";
+                    PreparedStatement ps2 = conn.prepareStatement(sql2);
+                    ps2.setInt(1, quantity);
+                    ps2.setDate(2, date);
+                    ps2.setDouble(3, price);
+                    ps2.setInt(4, productID);
+                    ps2.setInt(5, supplierID);
+                    System.out.println(""+ps2);
+                    ps2.executeUpdate();
+
+
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e);
+                }
+            }
+            else{
+                //insert
+                try{
+                    String sql2= " INSERT INTO Supplier_Product (quantity_available, production_date, price) " +
+                                " VALUES(?, ?, ?) " +
+                                " WHERE product_id = ? AND supplier_id = ? ";
+                    PreparedStatement ps2 = conn.prepareStatement(sql2);
+                    ps2.setInt(1, quantity);
+                    ps2.setDate(2, date);
+                    ps2.setDouble(3, price);
+                    ps2.setInt(4, productID);
+                    ps2.setInt(5, supplierID);
+                    System.out.println(""+ps2);
+                    ps2.executeUpdate();
+
+
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e);
+                }
+            }
+
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
