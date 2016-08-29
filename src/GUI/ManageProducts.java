@@ -10,6 +10,9 @@ import CoreClasses.Supplier;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -387,6 +390,11 @@ public class ManageProducts extends javax.swing.JFrame {
         jLabel16.setText("Price");
 
         btnSave1.setText("Save");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
 
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbProductID2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -651,7 +659,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
             p.addToProduct(txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
-            JOptionPane.showMessageDialog(null, txtName.getText() + " product added","", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, txtName.getText() + " Added Successfully","Product Addition Successful", JOptionPane.INFORMATION_MESSAGE);
            
             //Display next product ID
             txtProductID.setText(""+p.getNextProductID());
@@ -665,8 +673,33 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnModifySaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifySaveActionPerformed
-        p.updateProduct(PROPERTIES, name, category, image_link);
+        int pid = Integer.parseInt(txtProductID1.getText());
+        String name = txtName1.getText();
+        String img =txtImageLink2.getText();
+        String category = cmbCategory2.getSelectedItem().toString();
+        p.updateProduct(pid, name, category, img);
+        
+        JOptionPane.showMessageDialog(null, txtName1.getText() + " modified successfully","Modification Successful", JOptionPane.INFORMATION_MESSAGE);
+        
+        txtProductID1.setText("");
+        txtName1.setText("");
+        txtImageLink2.setText("");
+        cmbCategory2.setSelectedIndex(0);
+        refreshTable();
+        
     }//GEN-LAST:event_btnModifySaveActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        int pid = Integer.parseInt(cmbProductID2.getSelectedItem().toString());
+        int sid = Integer.parseInt(cmbSupplierID2.getSelectedItem().toString());
+        int qty = Integer.parseInt(spnQuantity.getValue().toString());
+        double price = Double.parseDouble(txtPrice1.getText());
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date dat =  
+        
+        p.adjustSupply(sid, pid, qty, dat, price);
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
     /**
      * @param args the command line arguments
