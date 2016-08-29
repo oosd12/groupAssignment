@@ -48,10 +48,10 @@ public class CollectionOfficer extends Officer{
         return rs; 
         }
         
-        public void updateCollection(String collection_status){
+        public void updateCollection(String OrderID,String collection_status){
         
         try{
-            String sql= "INSERT INTO Order_Product (collection_status) VALUES (?) ";
+            String sql= "INSERT INTO Order_Product.collection_staus WHERE order_id = '"+OrderID+"' VALUES ('"+collection_status+"') ";
             PreparedStatement ps = conn.prepareStatement(sql);
             
             ps.setString(1, collection_status);
