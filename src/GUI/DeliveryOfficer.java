@@ -18,6 +18,8 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     java.sql.Connection conn = new DBConnector().connect();
     String OrderID,CustomerName,CustomerAddress;
     Date OrderDate;
+    CoreClasses.DeliveryOfficer do1 = new CoreClasses.DeliveryOfficer();
+    
     /**
      * Creates new form DeliveryOfficer
      */
@@ -186,6 +188,11 @@ public class DeliveryOfficer extends javax.swing.JFrame {
 
         btnDelivered.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelivered.setText("Delivered");
+        btnDelivered.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeliveredActionPerformed(evt);
+            }
+        });
 
         btnRejected.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRejected.setText("Rejected");
@@ -294,6 +301,14 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     //    txtCustomerAddress.setText((tblOrderProducts.getModel().getValueAt(row, 6).toString()));
         
     }//GEN-LAST:event_tblOrderProductsMouseClicked
+
+    private void btnDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredActionPerformed
+        String OrderID = txtOrderID.getText();
+        
+        do1.updateDelivery(OrderID,"Delivered");
+        MsgDelivery.showMessageDialog(this,"Order Has Been Delivered!");
+        
+    }//GEN-LAST:event_btnDeliveredActionPerformed
 
     /**
      * @param args the command line arguments
