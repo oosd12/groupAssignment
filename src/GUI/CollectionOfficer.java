@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class CollectionOfficer extends javax.swing.JFrame {
     //Make initial connection to DB
     java.sql.Connection conn = new DBConnector().connect();
-    
+    CoreClasses.CollectionOfficer co1 = new CoreClasses.CollectionOfficer();
     /**
      * Creates new form CollectionOfficer
      */
@@ -244,8 +244,11 @@ public class CollectionOfficer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCollectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectedActionPerformed
-        MsgCollection.showMessageDialog(this,"Order Has Been Collected!");
+
+        String OrderID = txtOrderID.getText();
         
+        co1.updateCollection(OrderID,"Collected");
+        MsgCollection.showMessageDialog(this,"Order Has Been Collected!");
     }//GEN-LAST:event_btnCollectedActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
