@@ -47,4 +47,21 @@ public class CollectionOfficer extends Officer{
         
         return rs; 
         }
+        
+        public void updateCollection(String collection_status){
+        
+        try{
+            String sql= "INSERT INTO Order_Product (collection_status) VALUES (?) ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, collection_status);
+       
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+    }
 }
