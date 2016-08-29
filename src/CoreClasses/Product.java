@@ -311,6 +311,28 @@ public class Product {
         
         return 0;
     }
+    
+    public void  updateProduct(int productID,String name, String category, String image_link){
+        ResultSet rs = null;
+        try{
+            String sql= "UPDATE Product" +
+                        "SET `name` = ?, category = ?, image_link = ? " +
+                        "WHERE product_id = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, category);
+            ps.setString(3, image_link);
+            ps.setInt(4, productID);
+
+            rs = ps.executeQuery();
+            
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+
+    }
 }
 
 
