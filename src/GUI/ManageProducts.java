@@ -40,6 +40,20 @@ public class ManageProducts extends javax.swing.JFrame {
         tcm.getColumn(2).setHeaderValue("Category");
 
     }
+    
+    public void refreshTable(){
+        tblModify.setModel(DbUtils.resultSetToTableModel(p.getAllProducts()));
+        adjustColumns();
+        
+        //Display all product IDs
+        cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
+        //Display All supplier ID
+        cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierID().toArray()));
+        
+        //Display next product ID
+        txtProductID.setText(""+p.getNextProductID());
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +85,7 @@ public class ManageProducts extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblModify = new javax.swing.JTable();
         lblImage = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnModifySave = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         txtProductID1 = new javax.swing.JTextField();
@@ -247,7 +261,12 @@ public class ManageProducts extends javax.swing.JFrame {
         lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Save");
+        btnModifySave.setText("Save");
+        btnModifySave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifySaveActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +316,7 @@ public class ManageProducts extends javax.swing.JFrame {
                                     .addComponent(cmbCategory2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtImageLink2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelModifyLayout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnModifySave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -336,7 +355,7 @@ public class ManageProducts extends javax.swing.JFrame {
                             .addComponent(txtImageLink2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(btnModifySave)
                             .addComponent(jButton2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -521,17 +540,12 @@ public class ManageProducts extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        
-       tblModify.setModel(DbUtils.resultSetToTableModel(p.getAllProducts()));
-        adjustColumns();
-        
+       
+        refreshTable();
          
-        //Display all product IDs
-        cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
-        //Display All supplier ID
-        cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierID().toArray()));
         
-        //Display next product ID
-        txtProductID.setText(""+p.getNextProductID());
+        
+        
         
        
     }//GEN-LAST:event_formWindowOpened
@@ -641,7 +655,18 @@ public class ManageProducts extends javax.swing.JFrame {
            
             //Display next product ID
             txtProductID.setText(""+p.getNextProductID());
+            
+            txtName.setText("");
+            txtImageLink.setText("");
+            cmbCategory.setSelectedIndex(0);
+            lblImage1.setIcon(null);
+            
+            refreshTable();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnModifySaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifySaveActionPerformed
+        p.updateProduct(PROPERTIES, name, category, image_link);
+    }//GEN-LAST:event_btnModifySaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -682,6 +707,7 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCancel2;
+    private javax.swing.JButton btnModifySave;
     private javax.swing.JButton btnSave1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbCategory;
@@ -689,7 +715,6 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProductID2;
     private javax.swing.JComboBox<String> cmbSupplierID2;
     private javax.swing.JFormattedTextField ftxtfieldDate;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
