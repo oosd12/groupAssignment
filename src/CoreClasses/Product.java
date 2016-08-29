@@ -270,5 +270,47 @@ public class Product {
         
         return prodName;
     }
+    
+    //Add product
+   
+    public void addToProduct(String name, String category, String image_link){
+        
+        try{
+            String sql= "INSERT INTO Product (name, category, image_link) VALUES (?, ?, ?) ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, name);
+            ps.setString(2, category);
+            ps.setString(3, image_link);
+            
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+    }
+    
+    public int getNextProductID(){
+        ResultSet rs = null;
+        try{
+            String sql= "SELECT MAX(product_id) FROM Product";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                return rs.getInt(1) + 1;
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return 0;
+    }
 }
+
 

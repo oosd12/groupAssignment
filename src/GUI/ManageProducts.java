@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
@@ -20,6 +21,9 @@ import net.proteanit.sql.DbUtils;
  * @author Sanduni
  */
 public class ManageProducts extends javax.swing.JFrame {
+    
+    
+    
     Product p = new Product();
     Supplier s= new Supplier();    /**
      * Creates new form ManageProducts
@@ -35,9 +39,8 @@ public class ManageProducts extends javax.swing.JFrame {
         tcm.getColumn(1).setHeaderValue("Product Name");
         tcm.getColumn(2).setHeaderValue("Category");
 
-
-       
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,6 +134,11 @@ public class ManageProducts extends javax.swing.JFrame {
         });
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -521,9 +529,16 @@ public class ManageProducts extends javax.swing.JFrame {
         cmbProductID2.setModel(new javax.swing.DefaultComboBoxModel(p.getAllProductID().toArray()));
         //Display All supplier ID
         cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierID().toArray()));
+        
+        //Display next product ID
+        txtProductID.setText(""+p.getNextProductID());
+        
        
     }//GEN-LAST:event_formWindowOpened
 
+    
+    
+    
     private void txtProductIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductIDActionPerformed
@@ -619,6 +634,14 @@ public class ManageProducts extends javax.swing.JFrame {
                 txtSupplierName.setText(s.getSupplierName(Integer.parseInt(cmbSupplierID2.getSelectedItem().toString())));
 
     }//GEN-LAST:event_cmbSupplierID2ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+            p.addToProduct(txtName.getText(),cmbCategory.getSelectedItem().toString(), txtImageLink.getText());
+            JOptionPane.showMessageDialog(null, txtName.getText() + " product added","", JOptionPane.INFORMATION_MESSAGE);
+           
+            //Display next product ID
+            txtProductID.setText(""+p.getNextProductID());
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
