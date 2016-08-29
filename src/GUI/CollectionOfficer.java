@@ -7,6 +7,7 @@ package GUI;
 
 import CoreClasses.DBConnector;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -48,7 +49,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
         lblQuantity = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblOrder_Products = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         txtOrderID = new javax.swing.JTextField();
         lblOrderID = new javax.swing.JLabel();
@@ -130,7 +131,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrder_Products.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -141,7 +142,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblOrder_Products);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -250,6 +251,19 @@ public class CollectionOfficer extends javax.swing.JFrame {
         co1.updateCollection(OrderID,"Collected");
         MsgCollection.showMessageDialog(this,"Order Has Been Collected!");
     }//GEN-LAST:event_btnCollectedActionPerformed
+public void adjustColumns(){
+        //Products
+        TableColumnModel tcm = tblOrder_Products.getColumnModel();
+        tcm.getColumn(0).setHeaderValue("");
+        tcm.getColumn(1).setHeaderValue("");
+        tcm.getColumn(2).setHeaderValue("");
+        tcm.getColumn(3).setHeaderValue("");
+        tcm.getColumn(4).setHeaderValue("");
+        tcm.getColumn(5).setHeaderValue("");
+        tcm.getColumn(6).setHeaderValue("");
+        tcm.getColumn(7).setHeaderValue("");    
+        
+    }
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         int Choice = MsgCollection.YES_NO_OPTION;
@@ -308,12 +322,12 @@ public class CollectionOfficer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblOrderID;
     private javax.swing.JLabel lblProductName;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblSupplierAddress;
     private javax.swing.JLabel lblSupplierName;
+    private javax.swing.JTable tblOrder_Products;
     private javax.swing.JTextField txtOrderID;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtQuantity;
