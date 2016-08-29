@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -694,11 +697,17 @@ public class ManageProducts extends javax.swing.JFrame {
         int sid = Integer.parseInt(cmbSupplierID2.getSelectedItem().toString());
         int qty = Integer.parseInt(spnQuantity.getValue().toString());
         double price = Double.parseDouble(txtPrice1.getText());
+        java.sql.Date sqlDate = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dat =  
+        try {
+           java.util.Date dat = (java.util.Date) dateFormat.parse(ftxtfieldDate.getText());
+            sqlDate = new java.sql.Date(dat.getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(ManageProducts.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        p.adjustSupply(sid, pid, qty, dat, price);
+        p.adjustSupply(sid, pid, qty, sqlDate, price);
     }//GEN-LAST:event_btnSave1ActionPerformed
 
     /**
