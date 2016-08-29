@@ -31,4 +31,21 @@ public class DeliveryOfficer extends Officer{
         
         return rs;
     }
+    
+        public void updateDelivery(String OrderID,String delivery_status){
+        
+        try{
+            String sql= "INSERT INTO Order_Product (delivery_status) WHERE order_id = '"+OrderID+"' VALUES ('"+delivery_status+"') ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, delivery_status);
+       
+            ps.executeUpdate();
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+    }
 }
