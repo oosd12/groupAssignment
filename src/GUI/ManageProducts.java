@@ -714,7 +714,7 @@ public class ManageProducts extends javax.swing.JFrame {
         
         
         
-        p.adjustSupply(sid, pid, qty, sqlDate, price);
+        p.adjustSupply(sid, pid, qty, dat, price);
     }//GEN-LAST:event_btnSave1ActionPerformed
 
     /**
