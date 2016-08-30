@@ -368,16 +368,16 @@ public class Product {
             else{
                 //insert
                 try{
-                    String sql2= " INSERT INTO Supplier_Product (quantity_available, production_date, price) " +
-                                " VALUES(?, ?, ?) " +
-                                " WHERE product_id = ? AND supplier_id = ? ";
+                    String sql2= " INSERT INTO Supplier_Product (supplier_id, product_id, quantity_available, production_date, price) " +
+                                " VALUES(?, ?, ?, ?, ?) " +
+                                " ";
                     PreparedStatement ps2 = conn.prepareStatement(sql2);
-                    ps2.setInt(1, quantity);
-                    ps2.setDate(2, date);
-                    ps2.setDouble(3, price);
-                    ps2.setInt(4, productID);
-                    ps2.setInt(5, supplierID);
-                    System.out.println(""+ps2);
+                    ps2.setInt(1, supplierID);
+                    ps2.setInt(2, productID);
+                    ps2.setDouble(3, quantity);
+                    ps2.setDate(4, date);
+                    ps2.setDouble(5, price);
+                    
                     ps2.executeUpdate();
 
 
@@ -392,6 +392,37 @@ public class Product {
             JOptionPane.showMessageDialog(null,e);
         }
 
+    }
+    
+    public String[] getQuantityDetails(int productID, int supplierID){
+        String[] details = new String[3];
+        ResultSet rs = null;
+        
+        try{
+            String sql= "SELECT quantity_available, production_date, price FROM Supplier_Product WHERE product_id = ? AND supplier_id = ? " ;
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productID);
+            ps.setInt(2, supplierID);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+              details[0] = rs.getString(1); //first index for quantity
+              details[1] = rs.getString(2); //second index for production date
+              details[2] = rs.getString(3); //third index for price
+            }
+            else{
+                details[0] = ""+0;
+                details[1] = "0000-00-00";
+                details[2] = ""+0;
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return details;
     }
 }
 

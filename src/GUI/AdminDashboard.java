@@ -37,6 +37,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         tblProducts.setModel(DbUtils.resultSetToTableModel(p.getAllSupplies()));       
         tblOrders.setModel(DbUtils.resultSetToTableModel(o.getAllOrders()));       
         
+        Supplier s = new Supplier();
+        //Display all supplier locations (cities)
+        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierNames().toArray()));
+        
         adjustColumns();
     }
     
@@ -99,6 +103,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -304,9 +315,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         refreshTable();
-        Supplier s = new Supplier();
-        //Display all supplier locations (cities)
-        cmbSupplier.setModel(new javax.swing.DefaultComboBoxModel(s.getAllSupplierNames().toArray()));
+        
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -330,6 +339,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void btnPlacePhoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlacePhoneOrderActionPerformed
         new PlaceOrder().setVisible(true);
     }//GEN-LAST:event_btnPlacePhoneOrderActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        refreshTable();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
