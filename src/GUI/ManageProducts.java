@@ -696,7 +696,7 @@ public class ManageProducts extends javax.swing.JFrame {
         double price = Double.parseDouble(txtPrice1.getText());
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dat =  
+        Date dat =  Date.valueOf(ftxtfieldDate.getText());
         
         p.adjustSupply(sid, pid, qty, dat, price);
     }//GEN-LAST:event_btnSave1ActionPerformed
