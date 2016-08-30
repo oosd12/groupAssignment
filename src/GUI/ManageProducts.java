@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -116,7 +119,7 @@ public class ManageProducts extends javax.swing.JFrame {
         cmbSupplierID2 = new javax.swing.JComboBox<>();
         spnQuantity = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -366,10 +369,11 @@ public class ManageProducts extends javax.swing.JFrame {
         panelQuantity.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Quantity"));
 
         try {
-            ftxtfieldDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+            ftxtfieldDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftxtfieldDate.setText("");
 
         jLabel17.setText("Product Name");
 
@@ -648,13 +652,17 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProductID2MouseClicked
 
     private void cmbProductID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductID2ActionPerformed
-                txtProductName.setText(p.getProductName(Integer.parseInt(cmbProductID2.getSelectedItem().toString())));
+        txtProductName.setText(p.getProductName(Integer.parseInt(cmbProductID2.getSelectedItem().toString())));
 
     }//GEN-LAST:event_cmbProductID2ActionPerformed
 
     private void cmbSupplierID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierID2ActionPerformed
-                txtSupplierName.setText(s.getSupplierName(Integer.parseInt(cmbSupplierID2.getSelectedItem().toString())));
-
+        txtSupplierName.setText(s.getSupplierName(Integer.parseInt(cmbSupplierID2.getSelectedItem().toString())));
+        String[] details = p.getQuantityDetails(Integer.parseInt(cmbProductID2.getSelectedItem().toString()), Integer.parseInt(cmbSupplierID2.getSelectedItem().toString()));
+        
+        spnQuantity.setValue(Integer.parseInt(details[0]));
+        ftxtfieldDate.setText(details[1]);
+        txtPrice1.setText(details[2]);
     }//GEN-LAST:event_cmbSupplierID2ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -694,9 +702,17 @@ public class ManageProducts extends javax.swing.JFrame {
         int sid = Integer.parseInt(cmbSupplierID2.getSelectedItem().toString());
         int qty = Integer.parseInt(spnQuantity.getValue().toString());
         double price = Double.parseDouble(txtPrice1.getText());
+        java.sql.Date dat = null;
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dat =  Date.valueOf(ftxtfieldDate.getText());
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsed = dateFormat.parse(ftxtfieldDate.getText());
+            dat = new  java.sql.Date(parsed.getTime());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this,ex);
+        }
+        
+        
         
         p.adjustSupply(sid, pid, qty, dat, price);
     }//GEN-LAST:event_btnSave1ActionPerformed
