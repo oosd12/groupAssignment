@@ -42,7 +42,7 @@ public class Registration extends javax.swing.JFrame {
         txtContactno = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         lblContactno = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
+        pwdPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,18 +104,18 @@ public class Registration extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEmail)
                             .addComponent(lblName))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblContactno)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblContactno)
+                            .addComponent(lblPassword))
                         .addGap(18, 18, 18)
-                        .addComponent(txtContactno, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtContactno, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addComponent(pwdPassword))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,8 +136,8 @@ public class Registration extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,7 +185,7 @@ public class Registration extends javax.swing.JFrame {
         txtName.setText("");
         txtEmail.setText("");
         txtContactno.setText("");
-        txtPassword.setText("");
+        pwdPassword.setText("");
            
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -195,17 +195,17 @@ public class Registration extends javax.swing.JFrame {
         String Name = txtName.getText();
         String Email = txtEmail.getText();
         String ContactNo = txtContactno.getText();
-        String Password = txtPassword.getText();
+        String Password = pwdPassword.getText();
         
         if(c1.isCustomerExist(Email)){
             MsgRegister.showMessageDialog(this, "Customer is already in the system..Enter Different E-mail!");
-            dispose();
-            new Registration().setVisible(true);
+
         }
-        else {
-            c1.insertCustomer(Name, Email,ContactNo, Password);
+        else{
+            
+            c1.register(Name, Email, ContactNo, Password, "Customer");
             MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
-            }
+        }
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -268,9 +268,9 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegistration;
+    private javax.swing.JPasswordField pwdPassword;
     private javax.swing.JTextField txtContactno;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

@@ -97,6 +97,19 @@ public class MainWindow extends javax.swing.JFrame {
             //Showing greeting message
             lblGreet1.setText("Hi " + c.getCurrentCustomerName() + ", welcome back!");
         }
+        else if(userType == 2){
+             //Showing customer controls 
+            panelAccountControls.removeAll();
+            panelAccountControls.repaint();
+            panelAccountControls.revalidate();
+
+            panelAccountControls.add(panelAdminLogin);
+
+            panelAccountControls.repaint();
+            panelAccountControls.revalidate();
+            
+            lblCustomerName.setText(c.getCurrentCustomerName());
+        }
     }
 
     public void refreshTable() {
@@ -681,7 +694,9 @@ public class MainWindow extends javax.swing.JFrame {
         if (Customer.getCurrentCustomer() != null) {
             lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
             lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
-        } else if (!(Customer.getCurrentCustomer().equals(""))) {
+        }
+        
+        if (!(Customer.getCurrentCustomer().equals(""))) {
             lblItems.setText("Items in Cart : " + sc.getNoItemsInCart());
             lblItems1.setText("Items in Cart : " + sc.getNoItemsInCart());
         }
@@ -722,11 +737,22 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnViewCart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCart1ActionPerformed
-        // TODO add your handling code here:
+       new ShoppingCartGUI().setVisible(true);
+        System.out.println(""+conn);
     }//GEN-LAST:event_btnViewCart1ActionPerformed
 
     private void btnCancelPhoneOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPhoneOrderActionPerformed
-        // TODO add your handling code here:
+        sc.emptyShoppingCart();
+        Customer.setCurrentCustomer("");
+        JOptionPane.showMessageDialog(this, "Phone order cancelled", "Phone order cancelled", JOptionPane.INFORMATION_MESSAGE);
+
+        //Closing all open windows
+        java.awt.Window win[] = java.awt.Window.getWindows();
+        for (int i = 0; i < win.length; i++) {
+            win[i].dispose();
+        }
+
+        new AdminDashboard().setVisible(true);
     }//GEN-LAST:event_btnCancelPhoneOrderActionPerformed
 
     private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked

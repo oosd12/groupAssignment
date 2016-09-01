@@ -55,6 +55,7 @@ public class ShoppingCart {
                         "WHERE sci.user_id = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, c.getCurrentCustomerID());
+            System.out.println("GET CART ITEMS : "+ps);
             rs = ps.executeQuery();
         }
         catch(Exception e){

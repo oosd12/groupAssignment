@@ -25,15 +25,15 @@ public class Customer extends User{
         
         try{
             String sql= "SELECT * " +
-                        "FROM User u"+
-                        "WHERE email = "+Email+"";
+                        "FROM User "+
+                        "WHERE email = '"+Email+"' ";
             stmt=conn.createStatement();
             ResultSet Rs = stmt.executeQuery(sql);
-            while(Rs.next()){
+            if(Rs.next()){
                 flag = true;
             }
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.executeQuery();
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.executeQuery();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
@@ -41,22 +41,8 @@ public class Customer extends User{
         
         return flag;
     }
-    
-    public boolean insertCustomer(String Name,String Email,String ContactNo,String Password){
-        boolean flag = false;
-        String sql = "INSERT INTO sql6131484.`User` (`name`, email, user_type, password, contact_number) \n" +
-"	VALUES ('"+Name+"', '"+Email+"', 'Customer', '"+Password+"', '"+ContactNo+"');";
-        
-        try {
-            stmt=conn.createStatement();
-            if(stmt.executeUpdate(sql)>0){
-                flag = true;
-            }
-        } catch (SQLException ex) {
-            
-        }
-        return flag;
-    }
+
+   
    
     public String getCurrentCustomerName(){
         ResultSet rs = null;
@@ -100,8 +86,8 @@ public class Customer extends User{
         return currentCustomer;
     }
 
-    public static void setCurrentCustomer(String currentCustomer) {
-        Customer.currentCustomer = currentCustomer;
+    public static void setCurrentCustomer(String email) {
+        Customer.currentCustomer = email;
     }
     
     public String[] getPersonalDetails(){
@@ -128,6 +114,7 @@ public class Customer extends User{
         
         return personalDetails;
     }
+    
     
     
     

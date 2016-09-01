@@ -5,12 +5,16 @@
  */
 package GUI;
 
+import CoreClasses.Customer;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sanduni
  */
 public class PlaceOrder extends javax.swing.JFrame {
-
+    Customer c = new Customer();
+    
     /**
      * Creates new form PlaceOrder
      */
@@ -31,16 +35,21 @@ public class PlaceOrder extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        btnCheckout = new javax.swing.JButton();
+        btnCheck = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblPlaceOrder.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblPlaceOrder.setText("Phone Order");
 
         lblEmail.setText("E-mail");
 
-        btnCheckout.setText("Checkout");
+        btnCheck.setText("Check");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,20 +61,20 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(btnCheckout)
+                .addComponent(btnCheck)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(4, 11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblEmail)
                 .addGap(86, 86, 86))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckout))
+                    .addComponent(btnCheck))
                 .addGap(81, 81, 81))
         );
 
@@ -89,12 +98,30 @@ public class PlaceOrder extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(lblPlaceOrder)
                 .addGap(34, 34, 34)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+        if(c.isCustomerExist(txtEmail.getText())){
+            if(c.getUserType(txtEmail.getText()) == 1){
+            Customer.setCurrentCustomer(txtEmail.getText());
+                new MainWindow(2).setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "This email does not belong to a customer account, \nPhone orders can only be placed for customer accounts.", "Invalid Account", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "This email is not registered to a customer account,\n Proceed with registering the customer and then place the order.", "Invalid Account", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,7 +159,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckout;
+    private javax.swing.JButton btnCheck;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblPlaceOrder;
