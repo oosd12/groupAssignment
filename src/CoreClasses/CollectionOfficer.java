@@ -57,4 +57,26 @@ public class CollectionOfficer extends Officer{
         }
         
     }
+        
+    @Override
+    public ResultSet viewRoute() {
+        ResultSet rs = null;
+        
+        try{
+             String sql= "SELECT op.order_id, s.name, s.contact_number, s.street, s.city, s.post_code, p.name, op.quantity  " +
+                        "FROM `sql6131484`.`Order_Product` op " +
+                        "JOIN `sql6131484`.`DeliveryAddress` da on op.order_id = da.order_id "+
+                        "JOIN `sql6131484`.`Product` p on od.product_id = p.product_id "+
+                        "JOIN `sql6131484`.`Order` o on od.order_id = o.order_id "+
+                        "JOIN `sql6131484`.`Supplier` s on op.product_id = op.supplier_id "+
+                        "WHERE od.deliver_status = 'Pending' ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return rs;
+    }
 }

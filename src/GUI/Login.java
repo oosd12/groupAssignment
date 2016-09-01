@@ -170,6 +170,19 @@ public class Login extends javax.swing.JFrame {
             
             new AdminDashboard().setVisible(true);
         }
+        
+        else if(loginStatus == 3){
+            Admin.setCurrentAdmin(txtEmail.getText());
+            JOptionPane.showMessageDialog(null, "Logged in successfully !", "Login Success", JOptionPane.INFORMATION_MESSAGE);
+
+            java.awt.Window win[] = MainWindow.getWindows();
+            for(int i=0;i<win.length;i++){
+                win[i].dispose();
+            }
+            
+            new AdminDashboard().setVisible(true);
+        }
+        
         System.out.println("status : "+loginStatus);
     }//GEN-LAST:event_btnLoginActionPerformed
 

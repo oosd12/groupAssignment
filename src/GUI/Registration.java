@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import CoreClasses.Admin;
 import CoreClasses.Customer;
 import javax.swing.JOptionPane;
 /**
@@ -202,11 +203,18 @@ public class Registration extends javax.swing.JFrame {
 
         }
         else{
-            
             c1.register(Name, Email, ContactNo, Password, "Customer");
-            MsgRegister.showMessageDialog(this, "Customer Has Been Added to the System");
+            if(Admin.getCurrentAdmin().equals(null)){
+                MsgRegister.showMessageDialog(this, "You have successfully been registered.");
+
+            }
+            else{
+                MsgRegister.showMessageDialog(this, "Customer has been successfully registered");
+                Customer.setCurrentCustomer(Email);
+                new MainWindow(2).setVisible(true);
+            }
+
         }
-        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

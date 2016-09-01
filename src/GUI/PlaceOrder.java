@@ -110,13 +110,16 @@ public class PlaceOrder extends javax.swing.JFrame {
             if(c.getUserType(txtEmail.getText()) == 1){
             Customer.setCurrentCustomer(txtEmail.getText());
                 new MainWindow(2).setVisible(true);
+                JOptionPane.showMessageDialog(this, "Customer is registered, \nyou will be redirected to the main window.", "Account is registered", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
                 JOptionPane.showMessageDialog(this, "This email does not belong to a customer account, \nPhone orders can only be placed for customer accounts.", "Invalid Account", JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
-            JOptionPane.showMessageDialog(this, "This email is not registered to a customer account,\n Proceed with registering the customer and then place the order.", "Invalid Account", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "This email is not registered to a customer account,\n Proceed with registering the customer and then place the order.", "Please Register", JOptionPane.INFORMATION_MESSAGE);
+            Registration   r = new Registration();
+            r.setVisible(true);
             
         }
         

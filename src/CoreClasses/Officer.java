@@ -5,10 +5,12 @@
  */
 package CoreClasses;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author Abdullah
  */
 public abstract class Officer extends User{
-    
+    public abstract ResultSet viewRoute();
 }
