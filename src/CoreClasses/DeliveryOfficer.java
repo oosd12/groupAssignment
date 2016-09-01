@@ -19,9 +19,7 @@ public class DeliveryOfficer extends Officer{
         ResultSet rs = null;
         
         try{
-            String sql= "SELECT *" +
-                        "FROM Order_Product op" +
-                        "WHERE op.delivery_status = Pending";
+            String sql= "SELECT Order_id,order_date,gross_total,tax,net_total,deliveryMode FROM `Order` WHERE (deliveryMode = 'Delivery')";
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
         }
