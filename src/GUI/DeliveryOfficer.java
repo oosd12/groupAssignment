@@ -61,6 +61,11 @@ public class DeliveryOfficer extends javax.swing.JFrame {
         txtNetTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Delivery Officer");
@@ -331,10 +336,11 @@ public class DeliveryOfficer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGrossTotalActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tblOrder.setModel(DbUtils.resultSetToTableModel(do1.displayDelivery()));
         adjustColumns();
-    }  
+    }//GEN-LAST:event_formWindowOpened
+
 public void adjustColumns(){
         //Products
         TableColumnModel tcm = tblOrder.getColumnModel();
