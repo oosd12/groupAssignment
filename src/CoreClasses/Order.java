@@ -112,12 +112,12 @@ public class Order {
     public ResultSet getAllOrders(){
         ResultSet rs = null;
         try{
-             String sql= "SELECT o.order_id, o.order_date ,u.email, p.name, s.name, op.quantity, op.collection_status, op.deliver_status, o.deliveryMode " +
+             String sql= "SELECT o.order_id, o.order_date ,u.email, p.name, s.name, op.quantity, op.collection_status, op.deliver_status, o.deliveryMode, o.payment_status, o.order_type " +
                         "FROM `sql6131484`.`Order_Product` op " +
                         "JOIN `sql6131484`.`Order` o on op.order_id = o.order_id "+
                         "JOIN `sql6131484`.`Product` p on op.product_id = p.product_id "+
                         "JOIN `sql6131484`.`Supplier` s on op.supplier_id = s.supplier_id "+
-                        "JOIN `sql6131484`.`User` u on o.user_id = u.user_id  ORDER BY o.order_date DESC";
+                        "JOIN `sql6131484`.`User` u on o.user_id = u.user_id  ORDER BY o.order_id DESC";
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
         }
@@ -128,5 +128,30 @@ public class Order {
         return rs;
         
         
+    }
+    
+    public String[] getOrderDetails(int orderID){
+        String[] details = new String[4];
+        ResultSet rs = null;
+        try{
+            String sql= "SELECT order_date, gross_total, tax, net_total FROM `sql6131484`.Order WHERE order_id = ? " ;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+               details[0] = rs.getString(1); //order date in first index
+               details[1] = rs.getString(2); //gross total in second index
+               details[2] = rs.getString(3); //tax in third index
+               details[3] = rs.getString(4); //net total in fourth index
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return  details;
     }
 }

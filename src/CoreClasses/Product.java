@@ -424,6 +424,31 @@ public class Product {
         
         return details;
     }
+    
+    //getting the price for a given product
+    public double getProductPrice(int productID, int supplierID){
+ 
+        ResultSet rs = null;
+        double price = 0.0;
+        try{
+            String sql= "SELECT price FROM Supplier_Product WHERE product_id = ? AND  supplier_id = ? " ;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setInt(1, productID);
+            ps.setInt(2, supplierID);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+               price = rs.getDouble(1);
+            }
+
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        
+        return price;
+    }
 }
 
 

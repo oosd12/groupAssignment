@@ -170,9 +170,7 @@ public class Login extends javax.swing.JFrame {
             
             new AdminDashboard().setVisible(true);
         }
-        
         else if(loginStatus == 3){
-            Admin.setCurrentAdmin(txtEmail.getText());
             JOptionPane.showMessageDialog(null, "Logged in successfully !", "Login Success", JOptionPane.INFORMATION_MESSAGE);
 
             java.awt.Window win[] = MainWindow.getWindows();
@@ -180,7 +178,17 @@ public class Login extends javax.swing.JFrame {
                 win[i].dispose();
             }
             
-            new AdminDashboard().setVisible(true);
+            new GUI.DeliveryOfficer().setVisible(true);
+        }
+        else if(loginStatus == 4){
+            JOptionPane.showMessageDialog(null, "Logged in successfully !", "Login Success", JOptionPane.INFORMATION_MESSAGE);
+
+            java.awt.Window win[] = MainWindow.getWindows();
+            for(int i=0;i<win.length;i++){
+                win[i].dispose();
+            }
+            
+            new GUI.CollectionOfficer().setVisible(true);
         }
         
         System.out.println("status : "+loginStatus);

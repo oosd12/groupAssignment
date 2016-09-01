@@ -35,7 +35,7 @@ public class Delivery {
             JOptionPane.showMessageDialog(null,e);
         }
     }
-    
+    //Getting the last delivery address used by the current customer
     public String[] getLastDeliveryAddress(){
         String[] address = new String[3];
         ResultSet rs = null;

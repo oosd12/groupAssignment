@@ -67,6 +67,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         tcm2.getColumn(6).setHeaderValue("Collection");
         tcm2.getColumn(7).setHeaderValue("Delivery");
         tcm2.getColumn(8).setHeaderValue("Method");
+        tcm2.getColumn(9).setHeaderValue("Payment");
+        tcm2.getColumn(10).setHeaderValue("Type");
         
         
         

@@ -9,6 +9,8 @@ package CoreClasses;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -17,7 +19,16 @@ import javax.swing.JOptionPane;
 public class DBConnector {
     private static Connection DBConnection;
 
-    public static Connection getDBConnection() {
+    public static Connection getDBConnection(){
+        try {
+            if(!DBConnection.isValid(0)){
+                DBConnector.DBConnection = new DBConnector().connect();
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,ex);
+        }
+        
         return DBConnection;
     }
     

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import CoreClasses.Admin;
 import CoreClasses.Customer;
 import CoreClasses.Delivery;
 import CoreClasses.Order;
@@ -533,6 +534,13 @@ public class Checkout extends javax.swing.JFrame {
             double netTotal = Double.parseDouble(txtNetTotal.getText());
             double tax = Double.parseDouble(txtTax.getText());
             String orderType = "Online";
+            //If an admin is placing the order, set the type to phone
+            if(Admin.getCurrentAdmin() != null){
+                orderType = "Phone";
+            }
+            if(Admin.getCurrentAdmin().equals("")){
+                orderType = "Phone";
+            }
             String deliveryMode = cmbDeliveryMethod.getSelectedItem().toString();
             String street = txtStreet.getText();
             String city = txtCity.getText();

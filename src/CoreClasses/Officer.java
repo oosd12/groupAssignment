@@ -5,7 +5,9 @@
  */
 package CoreClasses;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,4 +15,6 @@ import java.sql.ResultSet;
  */
 public abstract class Officer extends User{
     public abstract ResultSet viewRoute();
+    
+    public abstract void updateJobStatus(int orderID, int productId, int supplierID, String status);
 }
