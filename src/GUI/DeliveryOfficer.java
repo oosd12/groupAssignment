@@ -8,6 +8,8 @@ package GUI;
 import CoreClasses.DBConnector;
 import java.sql.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -329,6 +331,21 @@ public class DeliveryOfficer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGrossTotalActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        tblOrder.setModel(DbUtils.resultSetToTableModel(do1.displayDelivery()));
+        adjustColumns();
+    }  
+public void adjustColumns(){
+        //Products
+        TableColumnModel tcm = tblOrder.getColumnModel();
+        
+        tcm.getColumn(0).setHeaderValue("Order ID");
+        tcm.getColumn(1).setHeaderValue("Order Date");
+        tcm.getColumn(2).setHeaderValue("Gross Total");
+        tcm.getColumn(3).setHeaderValue("Tax");
+        tcm.getColumn(4).setHeaderValue("Net Total"); 
+        
+    }    
     /**
      * @param args the command line arguments
      */

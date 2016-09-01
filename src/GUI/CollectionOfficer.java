@@ -246,6 +246,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
         
         co1.updateCollection(OrderID,"Collected");
         MsgCollection.showMessageDialog(this,"Order Has Been Collected!");
+        
     }//GEN-LAST:event_btnCollectedActionPerformed
 public void adjustColumns(){
         //Products
