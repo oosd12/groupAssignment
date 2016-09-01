@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CoreClasses;
 
 import java.sql.PreparedStatement;
@@ -20,9 +15,7 @@ public class CollectionOfficer extends Officer{
         ResultSet rs = null;
         
         try{
-            String sql= "SELECT *" +
-                        "FROM Order_Product op" +
-                        "WHERE op.collection_status = Pending";
+            String sql= "SELECT order_id,supplier_id,product_id,quantity,collection_status From Order_Product Where collection_status = 'Pending'";
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
         }
