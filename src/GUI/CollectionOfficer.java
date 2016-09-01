@@ -87,6 +87,11 @@ public class CollectionOfficer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblOrder_Products.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrder_ProductsMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblOrder_Products);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -257,7 +262,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
 public void adjustColumns(){
         //Products
         TableColumnModel tcm = tblOrder_Products.getColumnModel();
-        tcm.getColumn(0).setHeaderValue("POrder ID");
+        tcm.getColumn(0).setHeaderValue("Order ID");
         tcm.getColumn(1).setHeaderValue("Supplier ID");
         tcm.getColumn(2).setHeaderValue("Product ID");
         tcm.getColumn(3).setHeaderValue("Quantity"); 
@@ -265,17 +270,7 @@ public void adjustColumns(){
         
     } 
     
-    private void tblOrder_ProductsMouseClicked(java.awt.event.MouseEvent evt) {                                               
-        
-        int row = tblOrder_Products.getSelectedRow();
-        
-        txtCollectionStatus.setText(tblOrder_Products.getModel().getValueAt(row, 4).toString());
-        txtOrderID.setText(tblOrder_Products.getModel().getValueAt(row, 0).toString());
-        txtProductID.setText(tblOrder_Products.getModel().getValueAt(row, 2).toString());
-        txtQuantity.setText(tblOrder_Products.getModel().getValueAt(row, 3).toString());
-        txtSupplierID.setText(tblOrder_Products.getModel().getValueAt(row, 1).toString());
-        
-    }                                              
+                                       
 
 
 
@@ -296,6 +291,16 @@ public void adjustColumns(){
         tblOrder_Products.setModel(DbUtils.resultSetToTableModel(co1.displayCollection()));
         adjustColumns();
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblOrder_ProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrder_ProductsMouseClicked
+        int row = tblOrder_Products.getSelectedRow();
+        
+        txtCollectionStatus.setText(tblOrder_Products.getModel().getValueAt(row, 4).toString());
+        txtOrderID.setText(tblOrder_Products.getModel().getValueAt(row, 0).toString());
+        txtProductID.setText(tblOrder_Products.getModel().getValueAt(row, 2).toString());
+        txtQuantity.setText(tblOrder_Products.getModel().getValueAt(row, 3).toString());
+        txtSupplierID.setText(tblOrder_Products.getModel().getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tblOrder_ProductsMouseClicked
 
     /**
      * @param args the command line arguments
