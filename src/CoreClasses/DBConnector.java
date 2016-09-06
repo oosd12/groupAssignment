@@ -20,9 +20,12 @@ public class DBConnector {
     private static Connection DBConnection;
 
     public static Connection getDBConnection(){
+        Connection newDBConnection =null;
         try {
+            //if the previously made connection is still valid/open , return that connection else create and return a new conn
             if(!DBConnection.isValid(0)){
-                DBConnector.DBConnection = new DBConnector().connect();
+                newDBConnection = DBConnector.DBConnection = new DBConnector().connect();
+                return newDBConnection;
             }
 
         } catch (SQLException ex) {
