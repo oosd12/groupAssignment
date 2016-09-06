@@ -441,6 +441,11 @@ public class Checkout extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
         panelFooter.setLayout(panelFooterLayout);
@@ -551,6 +556,10 @@ public class Checkout extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btnCheckoutActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments

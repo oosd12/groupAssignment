@@ -159,6 +159,11 @@ public class ReviewGUI extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,6 +269,7 @@ public class ReviewGUI extends javax.swing.JFrame {
                 r.setSupplierID(supplierID);
                 
                 rd.addReview(r);
+                JOptionPane.showMessageDialog(this, "Your review for this product has been added successfully!.", "Review Added", JOptionPane.INFORMATION_MESSAGE);
                 
             } catch (ParseException ex) {
                 Logger.getLogger(ReviewGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -271,12 +277,15 @@ public class ReviewGUI extends javax.swing.JFrame {
             
         }
         
-        JOptionPane.showMessageDialog(this, "Review Added Successfully!", "Review Added", JOptionPane.INFORMATION_MESSAGE);
         panelContainer.removeAll();
         panelContainer.repaint();
         panelContainer.revalidate();
         displayReviewPanels();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
