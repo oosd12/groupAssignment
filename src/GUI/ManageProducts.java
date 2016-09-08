@@ -419,6 +419,11 @@ public class ManageProducts extends javax.swing.JFrame {
         });
 
         btnCancel2.setText("Cancel");
+        btnCancel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancel2ActionPerformed(evt);
+            }
+        });
 
         cmbSupplierID2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbSupplierID2.addActionListener(new java.awt.event.ActionListener() {
@@ -570,7 +575,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProductIDActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void txtImageLinkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImageLinkKeyPressed
@@ -591,7 +596,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_txtImageLinkKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+            dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tblModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblModifyMouseClicked
@@ -716,6 +721,10 @@ public class ManageProducts extends javax.swing.JFrame {
         
         p.adjustSupply(sid, pid, qty, dat, price);
     }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancel2ActionPerformed
 
     /**
      * @param args the command line arguments
