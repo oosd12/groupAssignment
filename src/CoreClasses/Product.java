@@ -25,7 +25,9 @@ public class Product {
                         "FROM Supplier_Product sp " +
                         "JOIN Supplier s on sp.supplier_id = s.supplier_id "+
                         "JOIN Product p on sp.product_id = p.product_id WHERE sp.quantity_available > 0";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = DBConnector.getDBConnection().prepareStatement(sql);
+            System.out.println("Used connection : " + DBConnector.getDBConnection());
+            System.out.println("Conn : " + conn);
             rs = ps.executeQuery();
         }
         catch(Exception e){
