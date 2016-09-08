@@ -12,21 +12,6 @@ public class CollectionOfficer extends Officer{
         java.sql.Connection conn = DBConnector.getDBConnection();
         
         
-    public ResultSet getRecords(){
-           ResultSet rs = null;
-        
-        try{
-            String sql= "SELECT *" +
-                        "FROM Order_Product op";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-        
-        return rs; 
-        }
         
     public void updateCollection(String OrderID,String collection_status){
         
