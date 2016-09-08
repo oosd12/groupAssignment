@@ -6,6 +6,7 @@
 package GUI;
 
 import CoreClasses.Admin;
+import CoreClasses.Collection;
 import CoreClasses.Customer;
 import CoreClasses.DBConnector;
 import CoreClasses.Order;
@@ -24,6 +25,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     
     Product p = new Product();
     Order o = new Order();
+    Collection c = new Collection();
+    
     /**
      * Creates new form AdminDashboard
      */

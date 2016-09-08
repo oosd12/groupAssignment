@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * @author Abdullah
  */
 public class Collection {
-    
+    java.sql.Connection conn = DBConnector.getDBConnection();
     public ResultSet generateCollectionReport(){
         ResultSet rs = null;
         //implementation here

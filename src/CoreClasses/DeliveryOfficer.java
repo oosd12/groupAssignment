@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class DeliveryOfficer extends Officer{
     java.sql.Connection conn = DBConnector.getDBConnection();
+        Product p = new Product();
         
         public void updateDelivery(String OrderID,String delivery_status){
         
@@ -83,7 +84,7 @@ public class DeliveryOfficer extends Officer{
     
     //Adjusting the the gross and net total of the order if a customer rejects a product.
     public void rejectItem(int order_id, int product_id, int supplier_id){
-        Product p = new Product();
+        
         double grossTotal, tax,netTotal,productPrice;
         //Selecting the current gross total and tax values
          try{

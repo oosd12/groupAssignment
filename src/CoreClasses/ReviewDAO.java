@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class ReviewDAO {
     java.sql.Connection conn = DBConnector.getDBConnection();
-    
+    ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList getReviews(int productID, int supplierID){
-        ArrayList<Review> reviews = new ArrayList<>();
+        
         
         ResultSet rs = null;
         try{
