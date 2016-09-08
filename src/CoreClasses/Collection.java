@@ -5,10 +5,17 @@
  */
 package CoreClasses;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author Abdullah
  */
 public class Collection {
     
+    public ResultSet generateCollectionReport(){
+        ResultSet rs = null;
+        //implementation here
+        return rs;
+    }
 }
