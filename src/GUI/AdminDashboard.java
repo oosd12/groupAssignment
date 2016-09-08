@@ -21,8 +21,6 @@ import net.proteanit.sql.DbUtils;
  */
 public class AdminDashboard extends javax.swing.JFrame {
     
-    //Make initial connection to DB
-    java.sql.Connection conn = new DBConnector().connect();
     
     Product p = new Product();
     Order o = new Order();

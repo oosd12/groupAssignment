@@ -15,8 +15,7 @@ import net.proteanit.sql.DbUtils;
  * @author Neshan
  */
 public class CollectionOfficer extends javax.swing.JFrame {
-    //Make initial connection to DB
-    java.sql.Connection conn = new DBConnector().connect();
+    
     CoreClasses.CollectionOfficer co1 = new CoreClasses.CollectionOfficer();
     int productID = 0, supplierID = 0;
     /**
