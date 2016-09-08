@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -110,5 +111,8 @@ abstract public class User {
 
         return -1;
     }
+    
+    
+    ArrayList<Message> Messages = new ArrayList<>();
     
 }

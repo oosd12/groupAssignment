@@ -22,17 +22,18 @@ public class DBConnector {
     public static Connection getDBConnection(){
         Connection newDBConnection =null;
         try {
-            //if the previously made connection is still valid/open , return that connection else create and return a new conn
-            if(!DBConnection.isValid(0)){
-                newDBConnection = DBConnector.DBConnection = new DBConnector().connect();
-                return newDBConnection;
+            //if the previously made connection is still valid/open , return that connection else create and return a new c
+            if(!DBConnector.DBConnection.isValid(0)){
+                System.out.println("Conneection has become invalid");
+                return new DBConnector().connect();
+                
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,ex);
         }
         
-        return DBConnection;
+        return DBConnector.DBConnection;
     }
     
     
@@ -44,7 +45,7 @@ public class DBConnector {
         catch(ClassNotFoundException cnfe){
             System.out.println("Connection failed" + cnfe);
         }
-        String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484";
+        String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6131484?autoReconnect=true";
         try{
             DBConnector.DBConnection = (Connection) DriverManager.getConnection(url, "sql6131484", "cRzv6DYZaP");
             System.out.println("Database Connected");

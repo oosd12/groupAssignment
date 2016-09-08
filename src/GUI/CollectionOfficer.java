@@ -404,7 +404,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
             refreshTable();
         }
         else{
-            JOptionPane.showMessageDialog(this, "Order item cannot be delivered,\nonly items that have a pending delivery status can be delivered", "Delivery failed.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Order item cannot be collected,\nonly items that have a pending collection status can be collected", "Collection failed.", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnCollectedActionPerformed
