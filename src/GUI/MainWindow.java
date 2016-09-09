@@ -30,7 +30,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    int productID, supplierID, quantity;
+    private int productID, supplierID, quantity;
 
     //Make initial connection to DB
     java.sql.Connection conn = new DBConnector().connect();
