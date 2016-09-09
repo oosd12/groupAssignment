@@ -220,7 +220,7 @@ public class Registration extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         int Choice = MsgRegister.YES_NO_OPTION;
         
-        MsgRegister.showConfirmDialog(null,"Are you sure you want to exit?");
+        MsgRegister.showConfirmDialog(null,"Are you sure you want to cancel?");
         
             if (Choice == JOptionPane.YES_OPTION){
                 dispose();
