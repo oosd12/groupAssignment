@@ -17,7 +17,7 @@ import net.proteanit.sql.DbUtils;
 public class CollectionOfficer extends javax.swing.JFrame {
     
     CoreClasses.CollectionOfficer co1 = new CoreClasses.CollectionOfficer();
-    int productID = 0, supplierID = 0;
+    private int productID = 0, supplierID = 0;
     /**
      * Creates new form CollectionOfficer
      */
@@ -25,8 +25,7 @@ public class CollectionOfficer extends javax.swing.JFrame {
         initComponents();
     }
     
-    String ProductName,SupplierName,SupplierAddress;
-    Double Quantity;
+    
     
     public void refreshTable(){
         tblCollectionRoute.setModel(DbUtils.resultSetToTableModel(co1.viewRoute()));

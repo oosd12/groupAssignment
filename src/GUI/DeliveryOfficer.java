@@ -19,7 +19,7 @@ public class DeliveryOfficer extends javax.swing.JFrame {
     
     CoreClasses.DeliveryOfficer do1 = new CoreClasses.DeliveryOfficer();
     
-    int productID = 0, supplierID = 0;
+    private int productID = 0, supplierID = 0;
     /**
      * Creates new form DeliveryOfficer
      */
