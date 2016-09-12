@@ -50,7 +50,7 @@ abstract public class User {
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
-
+        //if no result is found/invalid credetials return -1
         return -1;
     }
     

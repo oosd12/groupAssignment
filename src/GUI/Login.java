@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         int loginStatus = c.login(txtEmail.getText(), pwdPassword.getText());
 
-        if(loginStatus == 0){
+        if(loginStatus == -1){
             JOptionPane.showMessageDialog(null, "Invalid email or password, please try again", "Login Failure", JOptionPane.ERROR_MESSAGE);
         }
         else if(loginStatus == 1){
