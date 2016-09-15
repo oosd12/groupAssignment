@@ -32,7 +32,7 @@ import javax.swing.text.DefaultStyledDocument;
 public class ReviewGUI extends javax.swing.JFrame {
     ReviewDAO rd = new ReviewDAO();
     
-    int productID, supplierID;
+    private int productID, supplierID;
     
     
     /**

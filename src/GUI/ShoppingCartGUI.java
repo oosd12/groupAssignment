@@ -14,7 +14,7 @@ import net.proteanit.sql.DbUtils;
  * @author Abdullah
  */
 public class ShoppingCartGUI extends javax.swing.JFrame {
-    int productID,supplierID;
+    private int productID,supplierID;
     ShoppingCart s = new ShoppingCart();
     /**
      * Creates new form ShoppingCart
