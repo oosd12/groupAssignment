@@ -720,6 +720,7 @@ public class ManageProducts extends javax.swing.JFrame {
         
         
         p.adjustSupply(sid, pid, qty, dat, price);
+        JOptionPane.showMessageDialog(this,"Quantity Adjusted For Product : "+txtProductName.getText()+"\nFrom Supplier : "+txtSupplierName.getText(),"Adjustment Successful", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSave1ActionPerformed
 
     private void btnCancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel2ActionPerformed
